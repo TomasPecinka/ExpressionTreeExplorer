@@ -1,10 +1,20 @@
-﻿namespace ExpressionTreeExplorer.SampleApp
+﻿using System.Linq.Expressions;
+
+namespace ExpressionTreeExplorer.SampleApp;
+
+internal class Program
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
+        Expression<Func<User, bool>> expr =
+            x => x.Age > 20 && x.Age < 30;
+
+        Console.WriteLine(expr);
+        Console.ReadLine();
+    }
+
+    private class User
+    {
+        public int Age { get; set; }
     }
 }
