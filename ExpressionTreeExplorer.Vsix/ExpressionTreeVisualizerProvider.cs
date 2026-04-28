@@ -13,7 +13,7 @@ namespace ExpressionTreeExplorer.Vsix;
 internal class ExpressionTreeVisualizerProvider : DebuggerVisualizerProvider
 {
     public override DebuggerVisualizerProviderConfiguration DebuggerVisualizerProviderConfiguration =>
-        new(new VisualizerTargetType("Expression Explorer", typeof(LambdaExpression)))
+        new(new VisualizerTargetType("Expression Explorer", typeof(BinaryExpression)))
         {
             VisualizerObjectSourceType = new(typeof(ExpressionVisualizerObjectSource))
         };
