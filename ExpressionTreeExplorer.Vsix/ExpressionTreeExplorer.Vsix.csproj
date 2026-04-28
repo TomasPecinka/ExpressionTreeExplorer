@@ -4,6 +4,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="ExpressionTreeControl.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExpressionTreeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.9.2092" />
@@ -12,5 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExpressionTreeExplorer.Core\ExpressionTreeExplorer.Core.csproj" />
+    <ProjectReference Include="..\ExpressionTreeExplorer.ObjectSource\ExpressionTreeExplorer.ObjectSource.csproj" />
   </ItemGroup>
 </Project>
