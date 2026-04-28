@@ -1,25 +1,41 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Remove="ExpressionTreeControl.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ExpressionTreeControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="ExpressionTreeControl.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="ExpressionTreeControl.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.9.2092" />
-    <PackageReference Include="Microsoft.VisualStudio.Extensibility.Build" Version="17.9.2092" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Sdk" Version="17.9.2092" />
+		<PackageReference Include="Microsoft.VisualStudio.Extensibility.Build" Version="17.9.2092" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ExpressionTreeExplorer.Core\ExpressionTreeExplorer.Core.csproj" />
-    <ProjectReference Include="..\ExpressionTreeExplorer.ObjectSource\ExpressionTreeExplorer.ObjectSource.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+	  <Content Include="..\ExpressionTreeExplorer.ObjectSource\bin\Debug\netstandard2.0\ExpressionTreeExplorer.ObjectSource.dll">
+		<Link>netstandard2.0\ExpressionTreeExplorer.ObjectSource.dll</Link>
+		<IncludeInVSIX>true</IncludeInVSIX>
+		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="..\ExpressionTreeExplorer.Core\bin\Debug\netstandard2.0\ExpressionTreeExplorer.Core.dll">
+		<Link>netstandard2.0\ExpressionTreeExplorer.Core.dll</Link>
+		<IncludeInVSIX>true</IncludeInVSIX>
+		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\ExpressionTreeExplorer.Core\ExpressionTreeExplorer.Core.csproj" />
+		<ProjectReference Include="..\ExpressionTreeExplorer.ObjectSource\ExpressionTreeExplorer.ObjectSource.csproj" />
+	</ItemGroup>
 </Project>
