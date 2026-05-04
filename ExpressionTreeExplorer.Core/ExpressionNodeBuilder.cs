@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
@@ -27,6 +28,9 @@ public static class ExpressionNodeBuilder
             MemberExpression member => BuildMember(member, path),
             ConstantExpression constant => BuildConstant(constant, path),
             ParameterExpression parameter => BuildParameter(parameter, path),
+            MethodCallExpression methodCall => BuildMethodCall(methodCall, path),
+            UnaryExpression unary => BuildUnary(unary, path),
+            MemberInitExpression memberInit => BuildMemberInit(memberInit, path),
 
             _ => BuildFallback(expr, path)
         };
@@ -111,6 +115,113 @@ public static class ExpressionNodeBuilder
         };
     }
 
+    private static ExpressionNode BuildMethodCall(MethodCallExpression mc, string path)
+    {
+        var children = new List<ExpressionNode>();
+        var index = 0;
+
+        if (mc.Object != null)
+        {
+            children.Add(BuildNode(mc.Object, $"{path}/{index++}"));
+        }
+
+        foreach (var arg in mc.Arguments)
+        {
+            children.Add(BuildNode(arg, $"{path}/{index++}"));
+        }
+
+        return new ExpressionNode
+        {
+            Path = path,
+            Kind = "MethodCall",
+            NodeType = mc.NodeType.ToString(),
+            Display = mc.Method.Name,
+            TypeDisplay = mc.Type.ToString(),
+            Details =
+            [
+                Detail("Method", mc.Method.Name),
+                Detail("DeclaringType", mc.Method.DeclaringType?.ToString() ?? "-"),
+                Detail("ArgumentsCount", mc.Arguments.Count.ToString())
+            ],
+            Children = children
+        };
+    }
+
+    private static ExpressionNode BuildUnary(UnaryExpression u, string path)
+    {
+        var display = u.NodeType switch
+        {
+            ExpressionType.Convert => $"Convert → {u.Type.Name}",
+            ExpressionType.Quote => "Quote",
+            ExpressionType.Not => "Not",
+            ExpressionType.TypeAs => $"TypeAs → {u.Type.Name}",
+            _ => u.NodeType.ToString()
+        };
+
+        return new ExpressionNode
+        {
+            Path = path,
+            Kind = "Unary",
+            NodeType = u.NodeType.ToString(),
+            Display = display,
+            TypeDisplay = u.Type.ToString(),
+            Details =
+            [
+                Detail("Method", u.Method?.Name ?? "-")
+            ],
+            Children = [BuildNode(u.Operand, $"{path}/0")]
+        };
+    }
+
+    private static ExpressionNode BuildMemberInit(MemberInitExpression mi, string path)
+    {
+        var children = new List<ExpressionNode>
+    {
+        BuildNode(mi.NewExpression, $"{path}/0")
+    };
+
+        var index = 1;
+
+        foreach (var binding in mi.Bindings)
+        {
+            if (binding is MemberAssignment assignment)
+            {
+                var currentIndex = index++;
+
+                children.Add(new ExpressionNode
+                {
+                    Path = $"{path}/{currentIndex}",
+                    Kind = "Binding",
+                    NodeType = "MemberAssignment",
+                    Display = binding.Member.Name,
+                    TypeDisplay = assignment.Expression.Type.ToString(),
+                    Details =
+                    [
+                        Detail("Member", binding.Member.Name)
+                    ],
+                    Children =
+                    [
+                        BuildNode(assignment.Expression, $"{path}/{currentIndex}/0")
+                    ]
+                });
+            }
+        }
+
+        return new ExpressionNode
+        {
+            Path = path,
+            Kind = "MemberInit",
+            NodeType = mi.NodeType.ToString(),
+            Display = "MemberInit",
+            TypeDisplay = mi.Type.ToString(),
+            Details =
+            [
+                Detail("BindingsCount", mi.Bindings.Count.ToString())
+            ],
+            Children = children
+        };
+    }
+
     private static ExpressionNode BuildFallback(Expression expr, string path)
     {
         return new ExpressionNode
@@ -159,6 +270,15 @@ public static class ExpressionNodeBuilder
             char c => $"'{c}'",
             int or long or short or byte or float or double or decimal or bool => Convert.ToString(constant.Value, CultureInfo.InvariantCulture) ?? constant.Type.Name,
             _ => $"<{constant.Value.GetType().Name}>",
+        };
+    }
+
+    private static NodeDetail Detail(string name, string value)
+    {
+        return new NodeDetail
+        {
+            Name = name,
+            Value = value
         };
     }
 }
