@@ -1,0 +1,100 @@
+﻿{
+  Roots: [
+    {
+      Path: 0,
+      Kind: Lambda,
+      NodeType: Lambda,
+      Display: Lambda (x),
+      TypeDisplay: Func<User, UserDto>,
+      Children: [
+        {
+          Path: 0/0,
+          Kind: MemberInit,
+          NodeType: MemberInit,
+          Display: MemberInit,
+          TypeDisplay: ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto,
+          Details: [
+            {
+              Name: BindingsCount,
+              Value: 2
+            }
+          ],
+          Children: [
+            {
+              Path: 0/0/0,
+              Kind: Unsupported,
+              NodeType: New,
+              Display: New,
+              TypeDisplay: UserDto
+            },
+            {
+              Path: 0/0/1,
+              Kind: Binding,
+              NodeType: MemberAssignment,
+              Display: FullName,
+              TypeDisplay: System.String,
+              Details: [
+                {
+                  Name: Member,
+                  Value: FullName
+                }
+              ],
+              Children: [
+                {
+                  Path: 0/0/1/0,
+                  Kind: Member,
+                  NodeType: MemberAccess,
+                  Display: Name,
+                  TypeDisplay: String,
+                  Children: [
+                    {
+                      Path: 0/0/1/0/0,
+                      Kind: Parameter,
+                      NodeType: Parameter,
+                      Display: x,
+                      TypeDisplay: User
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              Path: 0/0/2,
+              Kind: Binding,
+              NodeType: MemberAssignment,
+              Display: Age,
+              TypeDisplay: System.Int32,
+              Details: [
+                {
+                  Name: Member,
+                  Value: Age
+                }
+              ],
+              Children: [
+                {
+                  Path: 0/0/2/0,
+                  Kind: Member,
+                  NodeType: MemberAccess,
+                  Display: Age,
+                  TypeDisplay: Int32,
+                  Children: [
+                    {
+                      Path: 0/0/2/0/0,
+                      Kind: Parameter,
+                      NodeType: Parameter,
+                      Display: x,
+                      TypeDisplay: User
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  ReadableText: x => new UserDto() {FullName = x.Name, Age = x.Age},
+  DebugText: x => new UserDto() {FullName = x.Name, Age = x.Age},
+  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto]
+}

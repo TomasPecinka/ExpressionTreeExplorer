@@ -1,0 +1,89 @@
+﻿{
+  Roots: [
+    {
+      Path: 0,
+      Kind: Lambda,
+      NodeType: Lambda,
+      Display: Lambda (x),
+      TypeDisplay: Func<User, bool>,
+      Children: [
+        {
+          Path: 0/0,
+          Kind: Binary,
+          NodeType: AndAlso,
+          Display: AndAlso,
+          TypeDisplay: Boolean,
+          Children: [
+            {
+              Path: 0/0/0,
+              Kind: Binary,
+              NodeType: GreaterThan,
+              Display: GreaterThan,
+              TypeDisplay: Boolean,
+              Children: [
+                {
+                  Path: 0/0/0/0,
+                  Kind: Member,
+                  NodeType: MemberAccess,
+                  Display: Age,
+                  TypeDisplay: Int32,
+                  Children: [
+                    {
+                      Path: 0/0/0/0/0,
+                      Kind: Parameter,
+                      NodeType: Parameter,
+                      Display: x,
+                      TypeDisplay: User
+                    }
+                  ]
+                },
+                {
+                  Path: 0/0/0/1,
+                  Kind: Constant,
+                  NodeType: Constant,
+                  Display: 20,
+                  TypeDisplay: Int32
+                }
+              ]
+            },
+            {
+              Path: 0/0/1,
+              Kind: Binary,
+              NodeType: LessThan,
+              Display: LessThan,
+              TypeDisplay: Boolean,
+              Children: [
+                {
+                  Path: 0/0/1/0,
+                  Kind: Member,
+                  NodeType: MemberAccess,
+                  Display: Age,
+                  TypeDisplay: Int32,
+                  Children: [
+                    {
+                      Path: 0/0/1/0/0,
+                      Kind: Parameter,
+                      NodeType: Parameter,
+                      Display: x,
+                      TypeDisplay: User
+                    }
+                  ]
+                },
+                {
+                  Path: 0/0/1/1,
+                  Kind: Constant,
+                  NodeType: Constant,
+                  Display: 30,
+                  TypeDisplay: Int32
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  ReadableText: x => ((x.Age > 20) AndAlso (x.Age < 30)),
+  DebugText: x => ((x.Age > 20) AndAlso (x.Age < 30)),
+  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean]
+}
