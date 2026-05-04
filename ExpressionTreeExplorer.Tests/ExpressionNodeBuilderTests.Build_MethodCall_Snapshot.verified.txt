@@ -1,0 +1,62 @@
+﻿{
+  Roots: [
+    {
+      Path: 0,
+      Kind: Lambda,
+      NodeType: Lambda,
+      Display: Lambda (x),
+      TypeDisplay: Func<User, bool>,
+      Children: [
+        {
+          Path: 0/0,
+          Kind: MethodCall,
+          NodeType: Call,
+          Display: StartsWith,
+          TypeDisplay: System.Boolean,
+          Details: [
+            {
+              Name: Method,
+              Value: StartsWith
+            },
+            {
+              Name: DeclaringType,
+              Value: System.String
+            },
+            {
+              Name: ArgumentsCount,
+              Value: 1
+            }
+          ],
+          Children: [
+            {
+              Path: 0/0/0,
+              Kind: Member,
+              NodeType: MemberAccess,
+              Display: Name,
+              TypeDisplay: String,
+              Children: [
+                {
+                  Path: 0/0/0/0,
+                  Kind: Parameter,
+                  NodeType: Parameter,
+                  Display: x,
+                  TypeDisplay: User
+                }
+              ]
+            },
+            {
+              Path: 0/0/1,
+              Kind: Constant,
+              NodeType: Constant,
+              Display: "A",
+              TypeDisplay: String
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  ReadableText: x => x.Name.StartsWith("A"),
+  DebugText: x => x.Name.StartsWith("A"),
+  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean]
+}

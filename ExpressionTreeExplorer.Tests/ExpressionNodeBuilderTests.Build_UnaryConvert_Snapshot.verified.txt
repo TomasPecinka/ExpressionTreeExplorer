@@ -1,0 +1,47 @@
+﻿{
+  Roots: [
+    {
+      Path: 0,
+      Kind: Lambda,
+      NodeType: Lambda,
+      Display: Lambda (x),
+      TypeDisplay: Func<User, Double>,
+      Children: [
+        {
+          Path: 0/0,
+          Kind: Unary,
+          NodeType: Convert,
+          Display: Convert → Double,
+          TypeDisplay: System.Double,
+          Details: [
+            {
+              Name: Method,
+              Value: -
+            }
+          ],
+          Children: [
+            {
+              Path: 0/0/0,
+              Kind: Member,
+              NodeType: MemberAccess,
+              Display: Age,
+              TypeDisplay: Int32,
+              Children: [
+                {
+                  Path: 0/0/0/0,
+                  Kind: Parameter,
+                  NodeType: Parameter,
+                  Display: x,
+                  TypeDisplay: User
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  ReadableText: x => Convert(x.Age, Double),
+  DebugText: x => Convert(x.Age, Double),
+  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Double]
+}
