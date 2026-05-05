@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq.Expressions;
 
 using ExpressionTreeExplorer.Core;
 
@@ -10,32 +12,12 @@ public class ExpressionVisualizerObjectSource : VisualizerObjectSource
 {
     public override void GetData(object target, Stream outgoingData)
     {
-        var payload = new ExpressionPayload     // fake payload for testing the visualizer without the actual expression tree parsing logic
+        if (target is not Expression expression)
         {
-            ReadableText = "FAKE EXPRESSION",
+            throw new InvalidOperationException("Target is not an Expression.");
+        }
 
-            Roots =
-            [
-                new ExpressionNode
-                {
-                    Display = "AndAlso",
-                    TypeDisplay = "bool",
-                    Children =
-                    [
-                        new ExpressionNode
-                        {
-                            Display = "GreaterThan",
-                            TypeDisplay = "bool"
-                        },
-                        new ExpressionNode
-                        {
-                            Display = "LessThan",
-                            TypeDisplay = "bool"
-                        }
-                    ]
-                }
-            ]
-        };
+        var payload = ExpressionNodeBuilder.Build(expression);
 
         SerializeAsJson(outgoingData, payload);
     }

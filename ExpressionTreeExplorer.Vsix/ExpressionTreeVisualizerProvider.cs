@@ -10,19 +10,22 @@ using Microsoft.VisualStudio.RpcContracts.RemoteUI;
 namespace ExpressionTreeExplorer.Vsix;
 
 [VisualStudioContribution]
-internal class ExpressionTreeVisualizerProvider : DebuggerVisualizerProvider
+internal sealed class ExpressionTreeVisualizerProvider : DebuggerVisualizerProvider
 {
     public override DebuggerVisualizerProviderConfiguration DebuggerVisualizerProviderConfiguration =>
-        new(new VisualizerTargetType("Expression Explorer", typeof(BinaryExpression)))
+        new(new VisualizerTargetType("%ExpressionTreeExplorer.Vsix.ExpressionTreeVisualizerProvider.DisplayName%", typeof(Expression<>)))
         {
             VisualizerObjectSourceType = new(typeof(ExpressionVisualizerObjectSource))
         };
 
-    public override async Task<IRemoteUserControl> CreateVisualizerAsync(VisualizerTarget visualizerTarget, CancellationToken cancellationToken)
+    public override async Task<IRemoteUserControl> CreateVisualizerAsync(
+        VisualizerTarget visualizerTarget,
+        CancellationToken cancellationToken)
     {
         var payload = await visualizerTarget.ObjectSource
             .RequestDataAsync<ExpressionPayload>(null, cancellationToken);
 
-        return new ExpressionTreeControl(payload);
+        return new ExpressionTreeControl(
+            new ExpressionTreeExplorerDataContext(payload));
     }
 }
