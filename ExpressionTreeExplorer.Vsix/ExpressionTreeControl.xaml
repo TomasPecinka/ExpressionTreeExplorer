@@ -49,7 +49,8 @@
                             Padding="6,3,8,3"
                             Margin="1,2"
                             BorderThickness="2,0,0,0"
-                            BorderBrush="#808080">
+                            BorderBrush="#808080"
+                            Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}">
                         <StackPanel Orientation="Horizontal">
                             <Border x:Name="BadgeBorder"
                                     Background="#3F3F46"
