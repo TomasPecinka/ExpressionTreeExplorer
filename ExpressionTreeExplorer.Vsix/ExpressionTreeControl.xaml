@@ -1,75 +1,310 @@
 <DataTemplate xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-	<Grid Margin="8">
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="2.2*" />
-			<ColumnDefinition Width="6" />
-			<ColumnDefinition Width="2.8*" />
-		</Grid.ColumnDefinitions>
+    <DataTemplate.Resources>
+        <Style TargetType="TreeViewItem">
+            <Setter Property="IsExpanded"
+                    Value="True" />
+            <Setter Property="Margin"
+                    Value="0,1,0,1" />
+            <Setter Property="Padding"
+                    Value="2" />
+            <Style.Triggers>
+                <Trigger Property="IsSelected"
+                         Value="True">
+                    <Setter Property="Background"
+                            Value="#264F78" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </DataTemplate.Resources>
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*" />
-			<RowDefinition Height="8" />
-			<RowDefinition Height="160" />
-		</Grid.RowDefinitions>
+    <Grid Background="#1E1E1E">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.2*" />
+            <ColumnDefinition Width="6" />
+            <ColumnDefinition Width="2.8*" />
+        </Grid.ColumnDefinitions>
 
-		<!-- Tree -->
-		<TreeView x:Name="NodeTree"
-		          Grid.Row="0" Grid.Column="0"
-		          ItemsSource="{Binding Roots}">
-			<TreeView.ItemTemplate>
-				<HierarchicalDataTemplate ItemsSource="{Binding Children}">
-					<StackPanel Orientation="Horizontal">
-						<TextBlock Text="{Binding Display}" />
-						<TextBlock Text="  " />
-						<TextBlock Text="{Binding TypeDisplay}" Opacity="0.6" />
-					</StackPanel>
-				</HierarchicalDataTemplate>
-			</TreeView.ItemTemplate>
-		</TreeView>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="8" />
+            <RowDefinition Height="160" />
+        </Grid.RowDefinitions>
 
-		<GridSplitter Grid.Row="0" Grid.Column="1"
-		              HorizontalAlignment="Stretch"
-		              VerticalAlignment="Stretch"
-		              Width="6" />
+        <!-- Tree -->
+        <TreeView x:Name="NodeTree"
+                  Grid.Row="0"
+                  Grid.Column="0"
+                  ItemsSource="{Binding Roots}"
+                  Background="#1E1E1E"
+                  BorderBrush="#3F3F46"
+                  BorderThickness="1"
+                  Padding="4">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                    <Border x:Name="NodeCard"
+                            CornerRadius="3"
+                            Padding="6,3,8,3"
+                            Margin="1,2"
+                            BorderThickness="2,0,0,0"
+                            BorderBrush="#808080"
+                            Background="#2D2D30">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="BadgeBorder"
+                                    Background="#3F3F46"
+                                    CornerRadius="2"
+                                    Padding="4,1"
+                                    Margin="0,0,6,0"
+                                    VerticalAlignment="Center">
+                                <TextBlock x:Name="Badge"
+                                           Text="?"
+                                           FontFamily="Consolas"
+                                           FontSize="10"
+                                           FontWeight="SemiBold"
+                                           Foreground="#808080"
+                                           VerticalAlignment="Center" />
+                            </Border>
+                            <TextBlock Text="{Binding Display}"
+                                       FontFamily="Consolas"
+                                       FontSize="12"
+                                       Foreground="#D4D4D4"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Text="  " />
+                            <TextBlock Text="{Binding TypeDisplay}"
+                                       FontFamily="Consolas"
+                                       FontSize="11"
+                                       Foreground="#808080"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
 
-		<!-- Detail panel -->
-		<Border Grid.Row="0" Grid.Column="2"
-		        Padding="8"
-		        DataContext="{Binding SelectedItem, ElementName=NodeTree}">
-			<DockPanel LastChildFill="True">
-				<StackPanel DockPanel.Dock="Top">
-					<TextBlock Text="{Binding Display}" FontWeight="SemiBold" FontSize="14" />
-					<TextBlock Text="{Binding Kind}" Opacity="0.8" />
-					<TextBlock Text="{Binding NodeType}" Opacity="0.8" />
-					<TextBlock Text="{Binding TypeDisplay}" Opacity="0.8" Margin="0,0,0,8" />
-				</StackPanel>
+                    <HierarchicalDataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="Lambda">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#C586C0" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="LAMBDA" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#C586C0" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="Binary">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#D4D4AA" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="BINARY" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#D4D4AA" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="Constant">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#B5CEA8" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="CONST" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#B5CEA8" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="MethodCall">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#DCDCAA" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="CALL" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#DCDCAA" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="Member">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#9CDCFE" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="MEMBER" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#9CDCFE" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="Parameter">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#569CD6" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="PARAM" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#569CD6" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="Unary">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#CE9178" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="UNARY" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#CE9178" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="MemberInit">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#4EC9B0" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="INIT" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#4EC9B0" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="Binding">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#4EC9B0" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="BIND" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#4EC9B0" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Kind}"
+                                     Value="Unsupported">
+                            <Setter TargetName="NodeCard"
+                                    Property="BorderBrush"
+                                    Value="#808080" />
+                            <Setter TargetName="Badge"
+                                    Property="Text"
+                                    Value="?" />
+                            <Setter TargetName="Badge"
+                                    Property="Foreground"
+                                    Value="#808080" />
+                        </DataTrigger>
+                    </HierarchicalDataTemplate.Triggers>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
 
-				<ItemsControl ItemsSource="{Binding Details}">
-					<ItemsControl.ItemTemplate>
-						<DataTemplate>
-							<Grid Margin="0,2,0,2">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="Auto" />
-									<ColumnDefinition Width="12" />
-									<ColumnDefinition Width="*" />
-								</Grid.ColumnDefinitions>
-								<TextBlock Grid.Column="0" Text="{Binding Name}" FontWeight="SemiBold" />
-								<TextBlock Grid.Column="2" Text="{Binding Value}" TextWrapping="Wrap" />
-							</Grid>
-						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
-			</DockPanel>
-		</Border>
+        <GridSplitter Grid.Row="0"
+                      Grid.Column="1"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Width="6"
+                      Background="#1E1E1E" />
 
-		<!-- Readable string -->
-		<TextBox Grid.Row="2" Grid.ColumnSpan="3"
-		         Text="{Binding ReadableText}"
-		         IsReadOnly="True"
-		         TextWrapping="Wrap"
-		         AcceptsReturn="True"
-		         VerticalScrollBarVisibility="Auto" />
-	</Grid>
+        <!-- Detail panel -->
+        <Border Grid.Row="0"
+                Grid.Column="2"
+                Background="#252526"
+                BorderBrush="#3F3F46"
+                BorderThickness="1"
+                CornerRadius="4"
+                Padding="12"
+                DataContext="{Binding SelectedItem, ElementName=NodeTree}">
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Top"
+                            Margin="0,0,0,10">
+                    <TextBlock Text="{Binding Display}"
+                               FontFamily="Consolas"
+                               FontWeight="SemiBold"
+                               FontSize="16"
+                               Foreground="#D4D4D4" />
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,4,0,0">
+                        <Border Background="#3F3F46"
+                                CornerRadius="3"
+                                Padding="6,2">
+                            <TextBlock Text="{Binding Kind}"
+                                       FontFamily="Consolas"
+                                       FontSize="11"
+                                       Foreground="#9CDCFE" />
+                        </Border>
+                        <TextBlock Text="  " />
+                        <TextBlock Text="{Binding NodeType}"
+                                   FontFamily="Consolas"
+                                   FontSize="11"
+                                   Foreground="#808080"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                    <TextBlock Text="{Binding TypeDisplay}"
+                               FontFamily="Consolas"
+                               FontSize="12"
+                               Foreground="#569CD6"
+                               Margin="0,4,0,0" />
+                </StackPanel>
+
+                <Border DockPanel.Dock="Top"
+                        Height="1"
+                        Background="#3F3F46"
+                        Margin="0,0,0,8" />
+
+                <ItemsControl ItemsSource="{Binding Details}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,3,0,3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="16" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           Text="{Binding Name}"
+                                           FontFamily="Consolas"
+                                           FontWeight="SemiBold"
+                                           FontSize="12"
+                                           Foreground="#9CDCFE" />
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding Value}"
+                                           FontFamily="Consolas"
+                                           FontSize="12"
+                                           Foreground="#D4D4D4"
+                                           TextWrapping="Wrap" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DockPanel>
+        </Border>
+
+        <!-- Readable expression (code view) -->
+        <Border Grid.Row="2"
+                Grid.ColumnSpan="3"
+                Background="#1A1A1E"
+                BorderBrush="#3F3F46"
+                BorderThickness="1"
+                CornerRadius="4"
+                Padding="4">
+            <TextBox Text="{Binding ReadableText}"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     FontFamily="Consolas"
+                     FontSize="12"
+                     Foreground="#D4D4D4"
+                     Background="#1A1A1E"
+                     BorderThickness="0"
+                     Padding="8" />
+        </Border>
+    </Grid>
 </DataTemplate>
