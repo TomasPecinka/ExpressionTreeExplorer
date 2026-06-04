@@ -83,6 +83,21 @@
                             BorderThickness="2,0,0,0"
                             BorderBrush="#808080"
                             Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}">
+                        <Border.ToolTip>
+                            <StackPanel MaxWidth="400">
+                                <TextBlock Text="{Binding Path}"
+                                           FontFamily="Consolas"
+                                           FontSize="11"
+                                           Opacity="0.6" />
+                                <TextBlock Text="{Binding NodeType}"
+                                           FontFamily="Consolas"
+                                           FontSize="11" />
+                                <TextBlock Text="{Binding TypeDisplay}"
+                                           FontFamily="Consolas"
+                                           FontSize="11"
+                                           Foreground="#569CD6" />
+                            </StackPanel>
+                        </Border.ToolTip>
                         <StackPanel Orientation="Horizontal">
                             <Border x:Name="BadgeBorder"
                                     Background="#3F3F46"
