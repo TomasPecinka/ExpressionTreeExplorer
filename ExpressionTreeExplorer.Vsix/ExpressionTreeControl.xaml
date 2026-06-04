@@ -4,12 +4,17 @@
     <DataTemplate.Resources>
         <Style TargetType="TreeViewItem">
             <Setter Property="IsExpanded"
-                    Value="True" />
+                    Value="False" />
             <Setter Property="Margin"
                     Value="0,1,0,1" />
             <Setter Property="Padding"
                     Value="2" />
             <Style.Triggers>
+                <DataTrigger Binding="{Binding IsExpanded}"
+                             Value="True">
+                    <Setter Property="IsExpanded"
+                            Value="True" />
+                </DataTrigger>
                 <Trigger Property="IsSelected"
                          Value="True">
                     <Setter Property="Background"
@@ -27,14 +32,41 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="8" />
             <RowDefinition Height="160" />
         </Grid.RowDefinitions>
 
+        <!-- Toolbar -->
+        <StackPanel Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    Orientation="Horizontal"
+                    Margin="0,0,0,4">
+            <Button Content="Expand All"
+                    Command="{Binding ExpandAllCommand}"
+                    FontFamily="Consolas"
+                    FontSize="11"
+                    Padding="8,3"
+                    Margin="0,0,4,0"
+                    Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
+                    Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
+                    BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                    BorderThickness="1" />
+            <Button Content="Collapse All"
+                    Command="{Binding CollapseAllCommand}"
+                    FontFamily="Consolas"
+                    FontSize="11"
+                    Padding="8,3"
+                    Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
+                    Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
+                    BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                    BorderThickness="1" />
+        </StackPanel>
+
         <!-- Tree -->
         <TreeView x:Name="NodeTree"
-                  Grid.Row="0"
+                  Grid.Row="1"
                   Grid.Column="0"
                   ItemsSource="{Binding Roots}"
                   BorderThickness="1"
@@ -207,7 +239,7 @@
             </TreeView.ItemTemplate>
         </TreeView>
 
-        <GridSplitter Grid.Row="0"
+        <GridSplitter Grid.Row="1"
                       Grid.Column="1"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
@@ -215,7 +247,7 @@
                       Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}" />
 
         <!-- Detail panel -->
-        <Border Grid.Row="0"
+        <Border Grid.Row="1"
                 Grid.Column="2"
                 BorderThickness="1"
                 CornerRadius="4"
@@ -287,7 +319,7 @@
         </Border>
 
         <!-- Readable expression (code view) -->
-        <Border Grid.Row="2"
+        <Border Grid.Row="3"
                 Grid.ColumnSpan="3"
                 BorderThickness="1"
                 CornerRadius="4"
