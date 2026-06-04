@@ -6,6 +6,16 @@
       NodeType: Lambda,
       Display: Lambda (x),
       TypeDisplay: Func<User, bool>,
+      Details: [
+        {
+          Name: ReturnType,
+          Value: bool
+        },
+        {
+          Name: ParameterCount,
+          Value: 1
+        }
+      ],
       Children: [
         {
           Path: 0/0,
@@ -34,26 +44,57 @@
               NodeType: MemberAccess,
               Display: Name,
               TypeDisplay: String,
+              Details: [
+                {
+                  Name: DeclaringType,
+                  Value: User
+                },
+                {
+                  Name: MemberType,
+                  Value: Property
+                }
+              ],
               Children: [
                 {
                   Path: 0/0/0/0,
                   Kind: Parameter,
                   NodeType: Parameter,
                   Display: x,
-                  TypeDisplay: User
+                  TypeDisplay: User,
+                  Details: [
+                    {
+                      Name: IsByRef,
+                      Value: False
+                    }
+                  ],
+                  IsExpanded: true
                 }
-              ]
+              ],
+              IsExpanded: true
             },
             {
               Path: 0/0/1,
               Kind: Constant,
               NodeType: Constant,
               Display: "A",
-              TypeDisplay: String
+              TypeDisplay: String,
+              Details: [
+                {
+                  Name: Value,
+                  Value: "A"
+                },
+                {
+                  Name: ClrType,
+                  Value: String
+                }
+              ],
+              IsExpanded: true
             }
-          ]
+          ],
+          IsExpanded: true
         }
-      ]
+      ],
+      IsExpanded: true
     }
   ],
   ReadableText: x => x.Name.StartsWith("A"),

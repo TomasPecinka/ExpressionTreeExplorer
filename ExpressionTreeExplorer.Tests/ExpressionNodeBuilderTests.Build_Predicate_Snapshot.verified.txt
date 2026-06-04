@@ -6,6 +6,16 @@
       NodeType: Lambda,
       Display: Lambda (x),
       TypeDisplay: Func<User, bool>,
+      Details: [
+        {
+          Name: ReturnType,
+          Value: bool
+        },
+        {
+          Name: ParameterCount,
+          Value: 1
+        }
+      ],
       Children: [
         {
           Path: 0/0,
@@ -13,6 +23,16 @@
           NodeType: AndAlso,
           Display: AndAlso,
           TypeDisplay: Boolean,
+          Details: [
+            {
+              Name: IsLifted,
+              Value: False
+            },
+            {
+              Name: Method,
+              Value: -
+            }
+          ],
           Children: [
             {
               Path: 0/0/0,
@@ -20,6 +40,16 @@
               NodeType: GreaterThan,
               Display: GreaterThan,
               TypeDisplay: Boolean,
+              Details: [
+                {
+                  Name: IsLifted,
+                  Value: False
+                },
+                {
+                  Name: Method,
+                  Value: -
+                }
+              ],
               Children: [
                 {
                   Path: 0/0/0/0,
@@ -27,24 +57,54 @@
                   NodeType: MemberAccess,
                   Display: Age,
                   TypeDisplay: Int32,
+                  Details: [
+                    {
+                      Name: DeclaringType,
+                      Value: User
+                    },
+                    {
+                      Name: MemberType,
+                      Value: Property
+                    }
+                  ],
                   Children: [
                     {
                       Path: 0/0/0/0/0,
                       Kind: Parameter,
                       NodeType: Parameter,
                       Display: x,
-                      TypeDisplay: User
+                      TypeDisplay: User,
+                      Details: [
+                        {
+                          Name: IsByRef,
+                          Value: False
+                        }
+                      ],
+                      IsExpanded: true
                     }
-                  ]
+                  ],
+                  IsExpanded: true
                 },
                 {
                   Path: 0/0/0/1,
                   Kind: Constant,
                   NodeType: Constant,
                   Display: 20,
-                  TypeDisplay: Int32
+                  TypeDisplay: Int32,
+                  Details: [
+                    {
+                      Name: Value,
+                      Value: 20
+                    },
+                    {
+                      Name: ClrType,
+                      Value: Int32
+                    }
+                  ],
+                  IsExpanded: true
                 }
-              ]
+              ],
+              IsExpanded: true
             },
             {
               Path: 0/0/1,
@@ -52,6 +112,16 @@
               NodeType: LessThan,
               Display: LessThan,
               TypeDisplay: Boolean,
+              Details: [
+                {
+                  Name: IsLifted,
+                  Value: False
+                },
+                {
+                  Name: Method,
+                  Value: -
+                }
+              ],
               Children: [
                 {
                   Path: 0/0/1/0,
@@ -59,28 +129,60 @@
                   NodeType: MemberAccess,
                   Display: Age,
                   TypeDisplay: Int32,
+                  Details: [
+                    {
+                      Name: DeclaringType,
+                      Value: User
+                    },
+                    {
+                      Name: MemberType,
+                      Value: Property
+                    }
+                  ],
                   Children: [
                     {
                       Path: 0/0/1/0/0,
                       Kind: Parameter,
                       NodeType: Parameter,
                       Display: x,
-                      TypeDisplay: User
+                      TypeDisplay: User,
+                      Details: [
+                        {
+                          Name: IsByRef,
+                          Value: False
+                        }
+                      ],
+                      IsExpanded: true
                     }
-                  ]
+                  ],
+                  IsExpanded: true
                 },
                 {
                   Path: 0/0/1/1,
                   Kind: Constant,
                   NodeType: Constant,
                   Display: 30,
-                  TypeDisplay: Int32
+                  TypeDisplay: Int32,
+                  Details: [
+                    {
+                      Name: Value,
+                      Value: 30
+                    },
+                    {
+                      Name: ClrType,
+                      Value: Int32
+                    }
+                  ],
+                  IsExpanded: true
                 }
-              ]
+              ],
+              IsExpanded: true
             }
-          ]
+          ],
+          IsExpanded: true
         }
-      ]
+      ],
+      IsExpanded: true
     }
   ],
   ReadableText: x => ((x.Age > 20) AndAlso (x.Age < 30)),
