@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 
+using AgileObjects.ReadableExpressions;
+
 namespace ExpressionTreeExplorer.Core;
 
 public static class ExpressionNodeBuilder
@@ -13,7 +15,7 @@ public static class ExpressionNodeBuilder
         return new ExpressionPayload
         {
             Roots = [BuildNode(expr, "0")],
-            ReadableText = expr.ToString(),
+            ReadableText = expr.ToReadableString(),
             DebugText = expr.ToString(),
             Summary = $"{expr.NodeType} : {expr.Type}",
         };

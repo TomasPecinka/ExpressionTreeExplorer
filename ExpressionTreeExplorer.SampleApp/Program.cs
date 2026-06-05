@@ -139,7 +139,7 @@ internal class Program
 
         foreach (var (name, expr) in expressions)
         {
-            Console.WriteLine($"\n=== {name} ===");
+            Console.WriteLine($"\n########### {name} ###########");
             Console.WriteLine(expr);
 
             var payload = ExpressionNodeBuilder.Build(expr);
