@@ -185,7 +185,7 @@
       IsExpanded: true
     }
   ],
-  ReadableText: x => ((x.Age > 20) AndAlso (x.Age < 30)),
+  ReadableText: x => (x.Age > 20) && (x.Age < 30),
   DebugText: x => ((x.Age > 20) AndAlso (x.Age < 30)),
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean]
 }

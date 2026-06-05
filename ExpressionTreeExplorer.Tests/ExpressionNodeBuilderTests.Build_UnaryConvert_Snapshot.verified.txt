@@ -71,7 +71,7 @@
       IsExpanded: true
     }
   ],
-  ReadableText: x => Convert(x.Age, Double),
+  ReadableText: x => (double)x.Age,
   DebugText: x => Convert(x.Age, Double),
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Double]
 }
