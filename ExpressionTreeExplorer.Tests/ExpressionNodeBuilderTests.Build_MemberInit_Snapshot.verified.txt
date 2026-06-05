@@ -155,7 +155,12 @@
       IsExpanded: true
     }
   ],
-  ReadableText: x => new UserDto() {FullName = x.Name, Age = x.Age},
+  ReadableText:
+x => new ExpressionNodeBuilderTests.UserDto
+{
+    FullName = x.Name,
+    Age = x.Age
+},
   DebugText: x => new UserDto() {FullName = x.Name, Age = x.Age},
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto]
 }
