@@ -99,5 +99,21 @@
   ],
   ReadableText: x => x.Name.StartsWith("A"),
   DebugText: x => x.Name.StartsWith("A"),
-  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean]
+  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean],
+  EndNodes: [
+    {
+      Name: x,
+      TypeDisplay: User,
+      Value: ,
+      Category: Parameter,
+      Path: 0/0/0/0
+    },
+    {
+      Name: "A",
+      TypeDisplay: String,
+      Value: "A",
+      Category: Constant,
+      Path: 0/0/1
+    }
+  ]
 }

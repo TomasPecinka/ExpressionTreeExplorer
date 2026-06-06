@@ -187,5 +187,35 @@
   ],
   ReadableText: x => (x.Age > 20) && (x.Age < 30),
   DebugText: x => ((x.Age > 20) AndAlso (x.Age < 30)),
-  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean]
+  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean],
+  EndNodes: [
+    {
+      Name: x,
+      TypeDisplay: User,
+      Value: ,
+      Category: Parameter,
+      Path: 0/0/0/0/0
+    },
+    {
+      Name: 20,
+      TypeDisplay: int,
+      Value: 20,
+      Category: Constant,
+      Path: 0/0/0/1
+    },
+    {
+      Name: x,
+      TypeDisplay: User,
+      Value: ,
+      Category: Parameter,
+      Path: 0/0/1/0/0
+    },
+    {
+      Name: 30,
+      TypeDisplay: int,
+      Value: 30,
+      Category: Constant,
+      Path: 0/0/1/1
+    }
+  ]
 }

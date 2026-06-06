@@ -10,4 +10,5 @@ public sealed class ExpressionPayload
     [DataMember] public string ReadableText { get; set; } = string.Empty;
     [DataMember] public string DebugText { get; set; } = string.Empty;
     [DataMember] public string Summary { get; set; } = string.Empty;
+    [DataMember] public List<EndNodeInfo> EndNodes { get; set; } = new();
 }
