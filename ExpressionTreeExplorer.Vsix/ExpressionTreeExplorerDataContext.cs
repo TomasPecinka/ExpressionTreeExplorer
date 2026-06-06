@@ -15,6 +15,7 @@ internal sealed class ExpressionTreeExplorerDataContext : NotifyPropertyChangedO
         ReadableText = payload.ReadableText;
         DebugText = payload.DebugText;
         Summary = payload.Summary;
+        EndNodes = payload.EndNodes;
 
         ExpandAllCommand = new AsyncCommand((_, ct) =>
         {
@@ -43,4 +44,5 @@ internal sealed class ExpressionTreeExplorerDataContext : NotifyPropertyChangedO
     [DataMember] public string Summary { get; }
     [DataMember] public IAsyncCommand ExpandAllCommand { get; }
     [DataMember] public IAsyncCommand CollapseAllCommand { get; }
+    [DataMember] public List<EndNodeInfo> EndNodes { get; }
 }

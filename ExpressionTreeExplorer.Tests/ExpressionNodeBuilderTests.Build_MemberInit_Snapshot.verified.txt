@@ -162,5 +162,21 @@ x => new ExpressionNodeBuilderTests.UserDto
     Age = x.Age
 },
   DebugText: x => new UserDto() {FullName = x.Name, Age = x.Age},
-  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto]
+  Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto],
+  EndNodes: [
+    {
+      Name: x,
+      TypeDisplay: User,
+      Value: ,
+      Category: Parameter,
+      Path: 0/0/1/0/0
+    },
+    {
+      Name: x,
+      TypeDisplay: User,
+      Value: ,
+      Category: Parameter,
+      Path: 0/0/2/0/0
+    }
+  ]
 }

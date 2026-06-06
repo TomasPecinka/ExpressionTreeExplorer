@@ -400,6 +400,54 @@ public class ExpressionNodeBuilderTests
         Assert.Contains(binary.Details, d => d.Name == "Method");
     }
 
+    [Fact]
+    public void Build_Predicate_CollectsParameterEndNodes()
+    {
+        Expression<Func<User, bool>> expr = x => x.Age > 20;
+
+        var payload = ExpressionNodeBuilder.Build(expr);
+        var parameters = payload.EndNodes.Where(e => e.Category == "Parameter").ToList();
+
+        Assert.Contains(parameters, p => p.Name == "x" && p.TypeDisplay == "User");
+    }
+
+    [Fact]
+    public void Build_Predicate_CollectsConstantEndNodes()
+    {
+        Expression<Func<User, bool>> expr = x => x.Age > 20;
+
+        var payload = ExpressionNodeBuilder.Build(expr);
+        var constants = payload.EndNodes.Where(e => e.Category == "Constant").ToList();
+
+        Assert.Contains(constants, c => c.Name == "20");
+    }
+
+    [Fact]
+    public void Build_Closure_CollectsClosedOverEndNodes()
+    {
+        int threshold = 5;
+        Expression<Func<int, bool>> expr = x => x > threshold;
+
+        var payload = ExpressionNodeBuilder.Build(expr);
+        var closedOver = payload.EndNodes.Where(e => e.Category == "ClosedOver").ToList();
+
+        Assert.Contains(closedOver, c => c.Name == "threshold");
+    }
+
+    [Fact]
+    public void Build_Default_CollectsDefaultEndNodes()
+    {
+        var param = Expression.Parameter(typeof(User), "x");
+        var defaultExpr = Expression.Default(typeof(int));
+        var lambda = Expression.Lambda<Func<User, int>>(defaultExpr, param);
+
+        var payload = ExpressionNodeBuilder.Build(lambda);
+        var defaults = payload.EndNodes.Where(e => e.Category == "Default").ToList();
+
+        Assert.Single(defaults);
+        Assert.Contains("int", defaults[0].Name);
+    }
+
     #endregion
 
     #region Snapshot tests
