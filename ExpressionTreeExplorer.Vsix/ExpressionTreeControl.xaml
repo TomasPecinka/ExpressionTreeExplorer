@@ -545,17 +545,25 @@
                 Padding="4"
                 Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
                 BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}">
-            <TextBox Text="{Binding ReadableText}"
-                     IsReadOnly="True"
-                     TextWrapping="Wrap"
-                     AcceptsReturn="True"
-                     VerticalScrollBarVisibility="Auto"
-                     FontFamily="Consolas"
-                     FontSize="12"
-                     BorderThickness="0"
-                     Padding="8"
-                     Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
-                     Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+            <StackPanel>
+                <TextBlock Text="Source Code"
+                           FontSize="11"
+                           FontWeight="SemiBold"
+                           Opacity="0.6"
+                           Margin="8,4,0,2"
+                           Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                <TextBox Text="{Binding ReadableText}"
+                         IsReadOnly="True"
+                         TextWrapping="Wrap"
+                         AcceptsReturn="True"
+                         VerticalScrollBarVisibility="Auto"
+                         FontFamily="Consolas"
+                         FontSize="12"
+                         BorderThickness="0"
+                         Padding="8"
+                         Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
+                         Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+            </StackPanel>
         </Border>
     </Grid>
 </DataTemplate>
