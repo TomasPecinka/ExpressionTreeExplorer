@@ -67,7 +67,59 @@
                       Value: False
                     }
                   ],
+                  SourceTokens: [
+                    {
+                      Text: x => ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: true
+                    },
+                    {
+                      Text: .Name,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: .StartsWith(,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: "A",
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: ),
+                      IsHighlighted: false
+                    }
+                  ],
                   IsExpanded: true
+                }
+              ],
+              SourceTokens: [
+                {
+                  Text: x => ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: x,
+                  IsHighlighted: true
+                },
+                {
+                  Text: .Name,
+                  IsHighlighted: true
+                },
+                {
+                  Text: .StartsWith(,
+                  IsHighlighted: false
+                },
+                {
+                  Text: "A",
+                  IsHighlighted: false
+                },
+                {
+                  Text: ),
+                  IsHighlighted: false
                 }
               ],
               IsExpanded: true
@@ -88,10 +140,88 @@
                   Value: String
                 }
               ],
+              SourceTokens: [
+                {
+                  Text: x => ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: x,
+                  IsHighlighted: false
+                },
+                {
+                  Text: .Name,
+                  IsHighlighted: false
+                },
+                {
+                  Text: .StartsWith(,
+                  IsHighlighted: false
+                },
+                {
+                  Text: "A",
+                  IsHighlighted: true
+                },
+                {
+                  Text: ),
+                  IsHighlighted: false
+                }
+              ],
               IsExpanded: true
             }
           ],
+          SourceTokens: [
+            {
+              Text: x => ,
+              IsHighlighted: false
+            },
+            {
+              Text: x,
+              IsHighlighted: true
+            },
+            {
+              Text: .Name,
+              IsHighlighted: true
+            },
+            {
+              Text: .StartsWith(,
+              IsHighlighted: true
+            },
+            {
+              Text: "A",
+              IsHighlighted: true
+            },
+            {
+              Text: ),
+              IsHighlighted: true
+            }
+          ],
           IsExpanded: true
+        }
+      ],
+      SourceTokens: [
+        {
+          Text: x => ,
+          IsHighlighted: true
+        },
+        {
+          Text: x,
+          IsHighlighted: true
+        },
+        {
+          Text: .Name,
+          IsHighlighted: true
+        },
+        {
+          Text: .StartsWith(,
+          IsHighlighted: true
+        },
+        {
+          Text: "A",
+          IsHighlighted: true
+        },
+        {
+          Text: ),
+          IsHighlighted: true
         }
       ],
       IsExpanded: true

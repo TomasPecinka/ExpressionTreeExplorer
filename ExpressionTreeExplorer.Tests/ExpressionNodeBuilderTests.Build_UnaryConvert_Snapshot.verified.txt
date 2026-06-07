@@ -59,13 +59,85 @@
                       Value: False
                     }
                   ],
+                  SourceTokens: [
+                    {
+                      Text: x => ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: (double),
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: true
+                    },
+                    {
+                      Text: .Age,
+                      IsHighlighted: false
+                    }
+                  ],
                   IsExpanded: true
+                }
+              ],
+              SourceTokens: [
+                {
+                  Text: x => ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: (double),
+                  IsHighlighted: false
+                },
+                {
+                  Text: x,
+                  IsHighlighted: true
+                },
+                {
+                  Text: .Age,
+                  IsHighlighted: true
                 }
               ],
               IsExpanded: true
             }
           ],
+          SourceTokens: [
+            {
+              Text: x => ,
+              IsHighlighted: false
+            },
+            {
+              Text: (double),
+              IsHighlighted: true
+            },
+            {
+              Text: x,
+              IsHighlighted: true
+            },
+            {
+              Text: .Age,
+              IsHighlighted: true
+            }
+          ],
           IsExpanded: true
+        }
+      ],
+      SourceTokens: [
+        {
+          Text: x => ,
+          IsHighlighted: true
+        },
+        {
+          Text: (double),
+          IsHighlighted: true
+        },
+        {
+          Text: x,
+          IsHighlighted: true
+        },
+        {
+          Text: .Age,
+          IsHighlighted: true
         }
       ],
       IsExpanded: true

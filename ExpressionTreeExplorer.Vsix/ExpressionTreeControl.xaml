@@ -20,6 +20,11 @@
                     <Setter Property="Background"
                             Value="#264F78" />
                 </Trigger>
+                <DataTrigger Binding="{Binding Path}"
+                             Value="0">
+                    <Setter Property="IsSelected"
+                            Value="True" />
+                </DataTrigger>
             </Style.Triggers>
         </Style>
 
@@ -825,7 +830,8 @@
                 CornerRadius="4"
                 Padding="4"
                 Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
-                BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}">
+                BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                DataContext="{Binding SelectedItem, ElementName=NodeTree}">
             <DockPanel LastChildFill="True">
                 <TextBlock DockPanel.Dock="Top"
                            Text="Source Code"
@@ -834,17 +840,49 @@
                            Opacity="0.6"
                            Margin="8,4,0,2"
                            Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
-                <TextBox Text="{Binding ReadableText}"
-                         IsReadOnly="True"
-                         TextWrapping="Wrap"
-                         AcceptsReturn="True"
-                         VerticalScrollBarVisibility="Auto"
-                         FontFamily="Consolas"
-                         FontSize="12"
-                         BorderThickness="0"
-                         Padding="8"
-                         Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
-                         Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding SourceTokens}"
+                                  Margin="8">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style>
+                                <Setter Property="FrameworkElement.Margin"
+                                        Value="0" />
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="0"
+                                        Margin="0">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="Background"
+                                                    Value="Transparent" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsHighlighted}"
+                                                             Value="True">
+                                                    <Setter Property="Background"
+                                                            Value="#3F569CD6" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <TextBlock Text="{Binding Text}"
+                                               FontFamily="Consolas"
+                                               FontSize="12"
+                                               Padding="0"
+                                               Margin="0"
+                                               Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </DockPanel>
         </Border>
     </Grid>
