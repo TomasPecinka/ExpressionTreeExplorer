@@ -15,6 +15,45 @@ public static class SourceTokenizer
         }).ToList();
     }
 
+    public static List<SourceLine> TokenizeLinesForPath(string text, List<SourceSpan> spans, string highlightPath)
+    {
+        var segments = ComputeSegments(text, spans);
+        var lines = new List<SourceLine>();
+        var currentLine = new SourceLine();
+        lines.Add(currentLine);
+
+        foreach (var s in segments)
+        {
+            var isHighlighted = s.Paths.Contains(highlightPath);
+            var segText = s.Text;
+            var start = 0;
+
+            for (var i = 0; i < segText.Length; i++)
+            {
+                if (segText[i] != '\n')
+                {
+                    continue;
+                }
+
+                if (i > start)
+                {
+                    currentLine.Tokens.Add(new SourceToken { Text = segText.Substring(start, i - start), IsHighlighted = isHighlighted });
+                }
+
+                currentLine = new SourceLine();
+                lines.Add(currentLine);
+                start = i + 1;
+            }
+
+            if (start < segText.Length)
+            {
+                currentLine.Tokens.Add(new SourceToken { Text = segText.Substring(start), IsHighlighted = isHighlighted });
+            }
+        }
+
+        return lines;
+    }
+
     public static List<(string Text, HashSet<string> Paths)> ComputeSegments(string text, List<SourceSpan> spans)
     {
         if (string.IsNullOrEmpty(text) || spans.Count == 0)

@@ -842,43 +842,43 @@
                            Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               HorizontalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding SourceTokens}"
+                    <ItemsControl ItemsSource="{Binding SourceLines}"
                                   Margin="8">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemContainerStyle>
-                            <Style>
-                                <Setter Property="FrameworkElement.Margin"
-                                        Value="0" />
-                            </Style>
-                        </ItemsControl.ItemContainerStyle>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border Padding="0"
-                                        Margin="0">
-                                    <Border.Style>
-                                        <Style TargetType="Border">
-                                            <Setter Property="Background"
-                                                    Value="Transparent" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding IsHighlighted}"
-                                                             Value="True">
-                                                    <Setter Property="Background"
-                                                            Value="#3F569CD6" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Border.Style>
-                                    <TextBlock Text="{Binding Text}"
-                                               FontFamily="Consolas"
-                                               FontSize="12"
-                                               Padding="0"
-                                               Margin="0"
-                                               Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
-                                </Border>
+                                <ItemsControl ItemsSource="{Binding Tokens}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Padding="0"
+                                                    Margin="0">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="Background"
+                                                                Value="Transparent" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsHighlighted}"
+                                                                         Value="True">
+                                                                <Setter Property="Background"
+                                                                        Value="#3F569CD6" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <TextBlock Text="{Binding Text}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="12"
+                                                           Padding="0"
+                                                           Margin="0"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

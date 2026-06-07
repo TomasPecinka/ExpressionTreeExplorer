@@ -19,8 +19,7 @@ public static class ExpressionNodeBuilder
         var root = BuildNode(expr, "0", ctx);
         var spanResult = SpanTrackingFormatter.Format(expr);
 
-        var segments = SourceTokenizer.ComputeSegments(spanResult.Text, new List<SourceSpan>(spanResult.Spans));
-        AssignSourceTokens(root, segments);
+        AssignSourceLines(root, spanResult.Text, new List<SourceSpan>(spanResult.Spans));
 
         return new ExpressionPayload
         {
@@ -33,17 +32,13 @@ public static class ExpressionNodeBuilder
         };
     }
 
-    private static void AssignSourceTokens(ExpressionNode node, List<(string Text, HashSet<string> Paths)> segments)
+    private static void AssignSourceLines(ExpressionNode node, string text, List<SourceSpan> spans)
     {
-        node.SourceTokens = segments.Select(s => new SourceToken
-        {
-            Text = s.Text,
-            IsHighlighted = s.Paths.Contains(node.Path)
-        }).ToList();
+        node.SourceLines = SourceTokenizer.TokenizeLinesForPath(text, spans, node.Path);
 
         foreach (var child in node.Children)
         {
-            AssignSourceTokens(child, segments);
+            AssignSourceLines(child, text, spans);
         }
     }
 
