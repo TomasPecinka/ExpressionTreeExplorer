@@ -16,7 +16,7 @@ public sealed class ExpressionNode : INotifyPropertyChanged
     [DataMember] public string TypeDisplay { get; set; } = string.Empty;
     [DataMember] public List<NodeDetail> Details { get; set; } = new();
     [DataMember] public List<ExpressionNode> Children { get; set; } = new();
-    [DataMember] public List<SourceToken> SourceTokens { get; set; } = new();
+    [DataMember] public List<SourceLine> SourceLines { get; set; } = new();
 
     [DataMember]
     public bool IsExpanded

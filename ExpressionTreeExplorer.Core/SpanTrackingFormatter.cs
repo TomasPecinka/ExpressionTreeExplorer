@@ -31,11 +31,17 @@ public static class SpanTrackingFormatter
     {
         public StringBuilder Builder { get; } = new();
         public List<SourceSpan> Spans { get; } = new();
+        public int IndentLevel { get; set; }
 
         public int Position => Builder.Length;
 
         public void Append(string text) => Builder.Append(text);
         public void Append(char c) => Builder.Append(c);
+        public void AppendLine()
+        {
+            Builder.Append('\n');
+            Builder.Append(' ', IndentLevel * 4);
+        }
 
         public SpanTracker TrackSpan(string path) => new(this, path);
     }
@@ -164,7 +170,14 @@ public static class SpanTrackingFormatter
             }
             ctx.Append(')');
         }
+
         ctx.Append(" => ");
+
+        if (lambda.Body is BlockExpression)
+        {
+            ctx.AppendLine();
+        }
+
         FormatNode(lambda.Body, $"{path}/0", ctx);
     }
 
@@ -311,32 +324,34 @@ public static class SpanTrackingFormatter
     private static void FormatMemberInit(MemberInitExpression mi, string path, FormatContext ctx)
     {
         FormatNode(mi.NewExpression, $"{path}/0", ctx);
-        ctx.Append(" { ");
+        ctx.AppendLine();
+        ctx.Append('{');
+        ctx.IndentLevel++;
 
         var index = 1;
-        var first = true;
         foreach (var binding in mi.Bindings)
         {
             if (binding is MemberAssignment assignment)
             {
                 var currentIndex = index++;
-                if (!first)
-                {
-                    ctx.Append(", ");
-                }
-
-                first = false;
-
+                ctx.AppendLine();
                 using (ctx.TrackSpan($"{path}/{currentIndex}"))
                 {
                     ctx.Append(binding.Member.Name);
                     ctx.Append(" = ");
                     FormatNode(assignment.Expression, $"{path}/{currentIndex}/0", ctx);
                 }
+
+                if (currentIndex < mi.Bindings.Count)
+                {
+                    ctx.Append(',');
+                }
             }
         }
 
-        ctx.Append(" }");
+        ctx.IndentLevel--;
+        ctx.AppendLine();
+        ctx.Append('}');
     }
 
     // Conditional: test=0, ifTrue=1, ifFalse=2
@@ -496,73 +511,106 @@ public static class SpanTrackingFormatter
     // Block: vars 0..m-1, exprs m..m+n-1 (shared counter)
     private static void FormatBlock(BlockExpression b, string path, FormatContext ctx)
     {
-        ctx.Append("{ ");
+        ctx.Append('{');
+        ctx.IndentLevel++;
         var index = 0;
 
         foreach (var variable in b.Variables)
         {
+            ctx.AppendLine();
             FormatNode(variable, $"{path}/{index++}", ctx);
-            ctx.Append("; ");
+            ctx.Append(';');
         }
 
         for (var i = 0; i < b.Expressions.Count; i++)
         {
-            if (i > 0)
-            {
-                ctx.Append("; ");
-            }
-
+            ctx.AppendLine();
             FormatNode(b.Expressions[i], $"{path}/{index++}", ctx);
+            ctx.Append(';');
         }
 
-        ctx.Append(" }");
+        ctx.IndentLevel--;
+        ctx.AppendLine();
+        ctx.Append('}');
     }
 
     // Try: body=0, handlers from 1 (synthetic CatchBlock nodes), finally/fault at end
     private static void FormatTry(TryExpression t, string path, FormatContext ctx)
     {
-        ctx.Append("try { ");
+        ctx.Append("try");
+        ctx.AppendLine();
+        ctx.Append('{');
+        ctx.IndentLevel++;
+        ctx.AppendLine();
         FormatNode(t.Body, $"{path}/0", ctx);
-        ctx.Append(" }");
+        ctx.Append(';');
+        ctx.IndentLevel--;
+        ctx.AppendLine();
+        ctx.Append('}');
 
         var index = 1;
         foreach (var handler in t.Handlers)
         {
             using (ctx.TrackSpan($"{path}/{index}"))
             {
-                ctx.Append($" catch ({ExpressionHelpers.SimplifyType(handler.Test)}");
+                ctx.AppendLine();
+                ctx.Append($"catch ({ExpressionHelpers.SimplifyType(handler.Test)}");
                 if (handler.Variable != null)
                 {
                     ctx.Append($" {handler.Variable.Name}");
                 }
-                ctx.Append(") { ");
+                ctx.Append(')');
+                ctx.AppendLine();
+                ctx.Append('{');
+                ctx.IndentLevel++;
 
                 var handlerIndex = 0;
                 if (handler.Filter != null)
                 {
+                    ctx.AppendLine();
                     ctx.Append("when (");
                     FormatNode(handler.Filter, $"{path}/{index}/{handlerIndex++}", ctx);
-                    ctx.Append(") ");
+                    ctx.Append(')');
                 }
 
+                ctx.AppendLine();
                 FormatNode(handler.Body, $"{path}/{index}/{handlerIndex}", ctx);
-                ctx.Append(" }");
+                ctx.Append(';');
+                ctx.IndentLevel--;
+                ctx.AppendLine();
+                ctx.Append('}');
             }
             index++;
         }
 
         if (t.Finally != null)
         {
-            ctx.Append(" finally { ");
+            ctx.AppendLine();
+            ctx.Append("finally");
+            ctx.AppendLine();
+            ctx.Append('{');
+            ctx.IndentLevel++;
+            ctx.AppendLine();
             FormatNode(t.Finally, $"{path}/{index++}", ctx);
-            ctx.Append(" }");
+            ctx.Append(';');
+            ctx.IndentLevel--;
+            ctx.AppendLine();
+            ctx.Append('}');
         }
 
         if (t.Fault != null)
         {
-            ctx.Append(" fault { ");
+            ctx.AppendLine();
+            ctx.Append("fault");
+            ctx.AppendLine();
+            ctx.Append('{');
+            ctx.IndentLevel++;
+            ctx.AppendLine();
             FormatNode(t.Fault, $"{path}/{index}", ctx);
-            ctx.Append(" }");
+            ctx.Append(';');
+            ctx.IndentLevel--;
+            ctx.AppendLine();
+            ctx.Append('}');
         }
     }
 
@@ -571,7 +619,10 @@ public static class SpanTrackingFormatter
     {
         ctx.Append("switch (");
         FormatNode(s.SwitchValue, $"{path}/0", ctx);
-        ctx.Append(") { ");
+        ctx.Append(')');
+        ctx.AppendLine();
+        ctx.Append('{');
+        ctx.IndentLevel++;
 
         var index = 1;
         foreach (var c in s.Cases)
@@ -581,23 +632,33 @@ public static class SpanTrackingFormatter
                 var caseIndex = 0;
                 foreach (var testValue in c.TestValues)
                 {
+                    ctx.AppendLine();
                     ctx.Append("case ");
                     FormatNode(testValue, $"{path}/{index}/{caseIndex++}", ctx);
-                    ctx.Append(": ");
+                    ctx.Append(':');
                 }
+                ctx.IndentLevel++;
+                ctx.AppendLine();
                 FormatNode(c.Body, $"{path}/{index}/{caseIndex}", ctx);
-                ctx.Append("; ");
+                ctx.Append(';');
+                ctx.IndentLevel--;
             }
             index++;
         }
 
         if (s.DefaultBody != null)
         {
-            ctx.Append("default: ");
+            ctx.AppendLine();
+            ctx.Append("default:");
+            ctx.IndentLevel++;
+            ctx.AppendLine();
             FormatNode(s.DefaultBody, $"{path}/{index}", ctx);
-            ctx.Append("; ");
+            ctx.Append(';');
+            ctx.IndentLevel--;
         }
 
+        ctx.IndentLevel--;
+        ctx.AppendLine();
         ctx.Append('}');
     }
 
@@ -641,9 +702,16 @@ public static class SpanTrackingFormatter
     // Loop: body=0
     private static void FormatLoop(LoopExpression l, string path, FormatContext ctx)
     {
-        ctx.Append("while (true) { ");
+        ctx.Append("while (true)");
+        ctx.AppendLine();
+        ctx.Append('{');
+        ctx.IndentLevel++;
+        ctx.AppendLine();
         FormatNode(l.Body, $"{path}/0", ctx);
-        ctx.Append(" }");
+        ctx.Append(';');
+        ctx.IndentLevel--;
+        ctx.AppendLine();
+        ctx.Append('}');
     }
 
     private static void FormatFallback(Expression expr, FormatContext ctx)
