@@ -5,11 +5,11 @@
       Kind: Lambda,
       NodeType: Lambda,
       Display: Lambda (x),
-      TypeDisplay: Func<User, Double>,
+      TypeDisplay: Func<User, double>,
       Details: [
         {
           Name: ReturnType,
-          Value: Double
+          Value: double
         },
         {
           Name: ParameterCount,
@@ -59,13 +59,85 @@
                       Value: False
                     }
                   ],
+                  SourceTokens: [
+                    {
+                      Text: x => ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: (double),
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: true
+                    },
+                    {
+                      Text: .Age,
+                      IsHighlighted: false
+                    }
+                  ],
                   IsExpanded: true
+                }
+              ],
+              SourceTokens: [
+                {
+                  Text: x => ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: (double),
+                  IsHighlighted: false
+                },
+                {
+                  Text: x,
+                  IsHighlighted: true
+                },
+                {
+                  Text: .Age,
+                  IsHighlighted: true
                 }
               ],
               IsExpanded: true
             }
           ],
+          SourceTokens: [
+            {
+              Text: x => ,
+              IsHighlighted: false
+            },
+            {
+              Text: (double),
+              IsHighlighted: true
+            },
+            {
+              Text: x,
+              IsHighlighted: true
+            },
+            {
+              Text: .Age,
+              IsHighlighted: true
+            }
+          ],
           IsExpanded: true
+        }
+      ],
+      SourceTokens: [
+        {
+          Text: x => ,
+          IsHighlighted: true
+        },
+        {
+          Text: (double),
+          IsHighlighted: true
+        },
+        {
+          Text: x,
+          IsHighlighted: true
+        },
+        {
+          Text: .Age,
+          IsHighlighted: true
         }
       ],
       IsExpanded: true
@@ -81,6 +153,27 @@
       Value: ,
       Category: Parameter,
       Path: 0/0/0/0
+    }
+  ],
+  SourceSpans: [
+    {
+      Path: 0/0/0/0,
+      Start: 13,
+      Length: 1
+    },
+    {
+      Path: 0/0/0,
+      Start: 13,
+      Length: 5
+    },
+    {
+      Path: 0/0,
+      Start: 5,
+      Length: 13
+    },
+    {
+      Path: 0,
+      Length: 18
     }
   ]
 }

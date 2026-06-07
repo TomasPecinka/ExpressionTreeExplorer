@@ -16,6 +16,7 @@ internal sealed class ExpressionTreeExplorerDataContext : NotifyPropertyChangedO
         DebugText = payload.DebugText;
         Summary = payload.Summary;
         EndNodes = payload.EndNodes;
+        SourceSpans = payload.SourceSpans;
 
         ParameterEndNodes = payload.EndNodes.Where(e => e.Category == "Parameter").ToList();
         ConstantEndNodes = payload.EndNodes.Where(e => e.Category == "Constant").ToList();
@@ -55,6 +56,7 @@ internal sealed class ExpressionTreeExplorerDataContext : NotifyPropertyChangedO
     [DataMember] public IAsyncCommand ExpandAllCommand { get; }
     [DataMember] public IAsyncCommand CollapseAllCommand { get; }
     [DataMember] public List<EndNodeInfo> EndNodes { get; }
+    [DataMember] public List<SourceSpan> SourceSpans { get; }
 
     [DataMember] public List<EndNodeInfo> ParameterEndNodes { get; }
     [DataMember] public List<EndNodeInfo> ConstantEndNodes { get; }

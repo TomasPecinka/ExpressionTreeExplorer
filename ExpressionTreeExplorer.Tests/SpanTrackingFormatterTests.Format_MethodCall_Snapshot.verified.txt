@@ -1,0 +1,24 @@
+﻿{
+  Text: x => x.Name.ToUpper(),
+  Spans: [
+    {
+      Path: 0/0/0/0,
+      Start: 5,
+      Length: 1
+    },
+    {
+      Path: 0/0/0,
+      Start: 5,
+      Length: 6
+    },
+    {
+      Path: 0/0,
+      Start: 5,
+      Length: 16
+    },
+    {
+      Path: 0,
+      Length: 21
+    }
+  ]
+}

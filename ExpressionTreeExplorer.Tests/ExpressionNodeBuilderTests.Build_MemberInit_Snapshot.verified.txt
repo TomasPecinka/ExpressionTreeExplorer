@@ -46,6 +46,52 @@
                   Value: 0
                 }
               ],
+              SourceTokens: [
+                {
+                  Text: x => ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: new UserDto(),
+                  IsHighlighted: true
+                },
+                {
+                  Text:  { ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: FullName = ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: x,
+                  IsHighlighted: false
+                },
+                {
+                  Text: .Name,
+                  IsHighlighted: false
+                },
+                {
+                  Text: , ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: Age = ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: x,
+                  IsHighlighted: false
+                },
+                {
+                  Text: .Age,
+                  IsHighlighted: false
+                },
+                {
+                  Text:  },
+                  IsHighlighted: false
+                }
+              ],
               IsExpanded: true
             },
             {
@@ -90,10 +136,148 @@
                           Value: False
                         }
                       ],
+                      SourceTokens: [
+                        {
+                          Text: x => ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: new UserDto(),
+                          IsHighlighted: false
+                        },
+                        {
+                          Text:  { ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: FullName = ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: true
+                        },
+                        {
+                          Text: .Name,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: , ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: Age = ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: .Age,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text:  },
+                          IsHighlighted: false
+                        }
+                      ],
                       IsExpanded: true
                     }
                   ],
+                  SourceTokens: [
+                    {
+                      Text: x => ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: new UserDto(),
+                      IsHighlighted: false
+                    },
+                    {
+                      Text:  { ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: FullName = ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: true
+                    },
+                    {
+                      Text: .Name,
+                      IsHighlighted: true
+                    },
+                    {
+                      Text: , ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: Age = ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: .Age,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text:  },
+                      IsHighlighted: false
+                    }
+                  ],
                   IsExpanded: true
+                }
+              ],
+              SourceTokens: [
+                {
+                  Text: x => ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: new UserDto(),
+                  IsHighlighted: false
+                },
+                {
+                  Text:  { ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: FullName = ,
+                  IsHighlighted: true
+                },
+                {
+                  Text: x,
+                  IsHighlighted: true
+                },
+                {
+                  Text: .Name,
+                  IsHighlighted: true
+                },
+                {
+                  Text: , ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: Age = ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: x,
+                  IsHighlighted: false
+                },
+                {
+                  Text: .Age,
+                  IsHighlighted: false
+                },
+                {
+                  Text:  },
+                  IsHighlighted: false
                 }
               ],
               IsExpanded: true
@@ -140,27 +324,252 @@
                           Value: False
                         }
                       ],
+                      SourceTokens: [
+                        {
+                          Text: x => ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: new UserDto(),
+                          IsHighlighted: false
+                        },
+                        {
+                          Text:  { ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: FullName = ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: .Name,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: , ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: Age = ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: true
+                        },
+                        {
+                          Text: .Age,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text:  },
+                          IsHighlighted: false
+                        }
+                      ],
                       IsExpanded: true
+                    }
+                  ],
+                  SourceTokens: [
+                    {
+                      Text: x => ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: new UserDto(),
+                      IsHighlighted: false
+                    },
+                    {
+                      Text:  { ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: FullName = ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: .Name,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: , ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: Age = ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: true
+                    },
+                    {
+                      Text: .Age,
+                      IsHighlighted: true
+                    },
+                    {
+                      Text:  },
+                      IsHighlighted: false
                     }
                   ],
                   IsExpanded: true
                 }
               ],
+              SourceTokens: [
+                {
+                  Text: x => ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: new UserDto(),
+                  IsHighlighted: false
+                },
+                {
+                  Text:  { ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: FullName = ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: x,
+                  IsHighlighted: false
+                },
+                {
+                  Text: .Name,
+                  IsHighlighted: false
+                },
+                {
+                  Text: , ,
+                  IsHighlighted: false
+                },
+                {
+                  Text: Age = ,
+                  IsHighlighted: true
+                },
+                {
+                  Text: x,
+                  IsHighlighted: true
+                },
+                {
+                  Text: .Age,
+                  IsHighlighted: true
+                },
+                {
+                  Text:  },
+                  IsHighlighted: false
+                }
+              ],
               IsExpanded: true
+            }
+          ],
+          SourceTokens: [
+            {
+              Text: x => ,
+              IsHighlighted: false
+            },
+            {
+              Text: new UserDto(),
+              IsHighlighted: true
+            },
+            {
+              Text:  { ,
+              IsHighlighted: true
+            },
+            {
+              Text: FullName = ,
+              IsHighlighted: true
+            },
+            {
+              Text: x,
+              IsHighlighted: true
+            },
+            {
+              Text: .Name,
+              IsHighlighted: true
+            },
+            {
+              Text: , ,
+              IsHighlighted: true
+            },
+            {
+              Text: Age = ,
+              IsHighlighted: true
+            },
+            {
+              Text: x,
+              IsHighlighted: true
+            },
+            {
+              Text: .Age,
+              IsHighlighted: true
+            },
+            {
+              Text:  },
+              IsHighlighted: true
             }
           ],
           IsExpanded: true
         }
       ],
+      SourceTokens: [
+        {
+          Text: x => ,
+          IsHighlighted: true
+        },
+        {
+          Text: new UserDto(),
+          IsHighlighted: true
+        },
+        {
+          Text:  { ,
+          IsHighlighted: true
+        },
+        {
+          Text: FullName = ,
+          IsHighlighted: true
+        },
+        {
+          Text: x,
+          IsHighlighted: true
+        },
+        {
+          Text: .Name,
+          IsHighlighted: true
+        },
+        {
+          Text: , ,
+          IsHighlighted: true
+        },
+        {
+          Text: Age = ,
+          IsHighlighted: true
+        },
+        {
+          Text: x,
+          IsHighlighted: true
+        },
+        {
+          Text: .Age,
+          IsHighlighted: true
+        },
+        {
+          Text:  },
+          IsHighlighted: true
+        }
+      ],
       IsExpanded: true
     }
   ],
-  ReadableText:
-x => new ExpressionNodeBuilderTests.UserDto
-{
-    FullName = x.Name,
-    Age = x.Age
-},
+  ReadableText: x => new UserDto() { FullName = x.Name, Age = x.Age },
   DebugText: x => new UserDto() {FullName = x.Name, Age = x.Age},
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto],
   EndNodes: [
@@ -177,6 +586,52 @@ x => new ExpressionNodeBuilderTests.UserDto
       Value: ,
       Category: Parameter,
       Path: 0/0/2/0/0
+    }
+  ],
+  SourceSpans: [
+    {
+      Path: 0/0/0,
+      Start: 5,
+      Length: 13
+    },
+    {
+      Path: 0/0/1/0/0,
+      Start: 32,
+      Length: 1
+    },
+    {
+      Path: 0/0/1/0,
+      Start: 32,
+      Length: 6
+    },
+    {
+      Path: 0/0/1,
+      Start: 21,
+      Length: 17
+    },
+    {
+      Path: 0/0/2/0/0,
+      Start: 46,
+      Length: 1
+    },
+    {
+      Path: 0/0/2/0,
+      Start: 46,
+      Length: 5
+    },
+    {
+      Path: 0/0/2,
+      Start: 40,
+      Length: 11
+    },
+    {
+      Path: 0/0,
+      Start: 5,
+      Length: 48
+    },
+    {
+      Path: 0,
+      Length: 53
     }
   ]
 }

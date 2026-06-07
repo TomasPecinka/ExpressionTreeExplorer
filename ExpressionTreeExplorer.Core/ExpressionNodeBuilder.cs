@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
-
-using AgileObjects.ReadableExpressions;
 
 namespace ExpressionTreeExplorer.Core;
 
@@ -20,15 +17,34 @@ public static class ExpressionNodeBuilder
     {
         var ctx = new BuildContext();
         var root = BuildNode(expr, "0", ctx);
+        var spanResult = SpanTrackingFormatter.Format(expr);
+
+        var segments = SourceTokenizer.ComputeSegments(spanResult.Text, new List<SourceSpan>(spanResult.Spans));
+        AssignSourceTokens(root, segments);
 
         return new ExpressionPayload
         {
             Roots = [root],
-            ReadableText = expr.ToReadableString(),
+            ReadableText = spanResult.Text,
             DebugText = expr.ToString(),
             Summary = $"{expr.NodeType} : {expr.Type}",
             EndNodes = ctx.EndNodes,
+            SourceSpans = new List<SourceSpan>(spanResult.Spans),
         };
+    }
+
+    private static void AssignSourceTokens(ExpressionNode node, List<(string Text, HashSet<string> Paths)> segments)
+    {
+        node.SourceTokens = segments.Select(s => new SourceToken
+        {
+            Text = s.Text,
+            IsHighlighted = s.Paths.Contains(node.Path)
+        }).ToList();
+
+        foreach (var child in node.Children)
+        {
+            AssignSourceTokens(child, segments);
+        }
     }
 
     private static ExpressionNode BuildNode(Expression expr, string path, BuildContext ctx)
@@ -756,44 +772,9 @@ public static class ExpressionNodeBuilder
         };
     }
 
-    private static string SimplifyType(Type type)
-    {
-        if (type == typeof(int))
-        {
-            return "int";
-        }
+    private static string SimplifyType(Type type) => ExpressionHelpers.SimplifyType(type);
 
-        if (type == typeof(bool))
-        {
-            return "bool";
-        }
-
-        if (type.IsGenericType)
-        {
-            var tickIndex = type.Name.IndexOf('`');
-            var genericName = tickIndex > 0
-                ? type.Name.Substring(0, tickIndex)
-                : type.Name;
-
-            var args = type.GetGenericArguments().Select(SimplifyType);
-
-            return $"{genericName}<{string.Join(", ", args)}>";
-        }
-
-        return type.Name;
-    }
-
-    private static string FormatConstant(ConstantExpression constant)
-    {
-        return constant.Value switch
-        {
-            null => "null",
-            string s => $"\"{s}\"",
-            char c => $"'{c}'",
-            int or long or short or byte or float or double or decimal or bool => Convert.ToString(constant.Value, CultureInfo.InvariantCulture) ?? constant.Type.Name,
-            _ => $"<{constant.Value.GetType().Name}>",
-        };
-    }
+    private static string FormatConstant(ConstantExpression constant) => ExpressionHelpers.FormatConstant(constant);
 
     private static NodeDetail Detail(string name, string value)
     {
