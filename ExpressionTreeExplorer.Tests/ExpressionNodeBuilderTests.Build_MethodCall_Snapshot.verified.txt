@@ -110,10 +110,36 @@
     },
     {
       Name: "A",
-      TypeDisplay: String,
+      TypeDisplay: string,
       Value: "A",
       Category: Constant,
       Path: 0/0/1
+    }
+  ],
+  SourceSpans: [
+    {
+      Path: 0/0/0/0,
+      Start: 5,
+      Length: 1
+    },
+    {
+      Path: 0/0/0,
+      Start: 5,
+      Length: 6
+    },
+    {
+      Path: 0/0/1,
+      Start: 23,
+      Length: 3
+    },
+    {
+      Path: 0/0,
+      Start: 5,
+      Length: 22
+    },
+    {
+      Path: 0,
+      Length: 27
     }
   ]
 }

@@ -5,11 +5,11 @@
       Kind: Lambda,
       NodeType: Lambda,
       Display: Lambda (x),
-      TypeDisplay: Func<User, Double>,
+      TypeDisplay: Func<User, double>,
       Details: [
         {
           Name: ReturnType,
-          Value: Double
+          Value: double
         },
         {
           Name: ParameterCount,
@@ -81,6 +81,27 @@
       Value: ,
       Category: Parameter,
       Path: 0/0/0/0
+    }
+  ],
+  SourceSpans: [
+    {
+      Path: 0/0/0/0,
+      Start: 13,
+      Length: 1
+    },
+    {
+      Path: 0/0/0,
+      Start: 13,
+      Length: 5
+    },
+    {
+      Path: 0/0,
+      Start: 5,
+      Length: 13
+    },
+    {
+      Path: 0,
+      Length: 18
     }
   ]
 }

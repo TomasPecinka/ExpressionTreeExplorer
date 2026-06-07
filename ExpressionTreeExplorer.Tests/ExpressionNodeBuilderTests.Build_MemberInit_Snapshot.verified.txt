@@ -155,12 +155,7 @@
       IsExpanded: true
     }
   ],
-  ReadableText:
-x => new ExpressionNodeBuilderTests.UserDto
-{
-    FullName = x.Name,
-    Age = x.Age
-},
+  ReadableText: x => new UserDto() { FullName = x.Name, Age = x.Age },
   DebugText: x => new UserDto() {FullName = x.Name, Age = x.Age},
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto],
   EndNodes: [
@@ -177,6 +172,52 @@ x => new ExpressionNodeBuilderTests.UserDto
       Value: ,
       Category: Parameter,
       Path: 0/0/2/0/0
+    }
+  ],
+  SourceSpans: [
+    {
+      Path: 0/0/0,
+      Start: 5,
+      Length: 13
+    },
+    {
+      Path: 0/0/1/0/0,
+      Start: 32,
+      Length: 1
+    },
+    {
+      Path: 0/0/1/0,
+      Start: 32,
+      Length: 6
+    },
+    {
+      Path: 0/0/1,
+      Start: 21,
+      Length: 17
+    },
+    {
+      Path: 0/0/2/0/0,
+      Start: 46,
+      Length: 1
+    },
+    {
+      Path: 0/0/2/0,
+      Start: 46,
+      Length: 5
+    },
+    {
+      Path: 0/0/2,
+      Start: 40,
+      Length: 11
+    },
+    {
+      Path: 0/0,
+      Start: 5,
+      Length: 48
+    },
+    {
+      Path: 0,
+      Length: 53
     }
   ]
 }

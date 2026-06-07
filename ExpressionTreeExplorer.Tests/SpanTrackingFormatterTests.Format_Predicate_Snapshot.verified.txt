@@ -1,0 +1,54 @@
+﻿{
+  Text: x => (x.Age > 20) && (x.Age < 30),
+  Spans: [
+    {
+      Path: 0/0/0/0/0,
+      Start: 6,
+      Length: 1
+    },
+    {
+      Path: 0/0/0/0,
+      Start: 6,
+      Length: 5
+    },
+    {
+      Path: 0/0/0/1,
+      Start: 14,
+      Length: 2
+    },
+    {
+      Path: 0/0/0,
+      Start: 6,
+      Length: 10
+    },
+    {
+      Path: 0/0/1/0/0,
+      Start: 22,
+      Length: 1
+    },
+    {
+      Path: 0/0/1/0,
+      Start: 22,
+      Length: 5
+    },
+    {
+      Path: 0/0/1/1,
+      Start: 30,
+      Length: 2
+    },
+    {
+      Path: 0/0/1,
+      Start: 22,
+      Length: 10
+    },
+    {
+      Path: 0/0,
+      Start: 5,
+      Length: 28
+    },
+    {
+      Path: 0,
+      Length: 33
+    }
+  ]
+}
