@@ -22,6 +22,58 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="TabBorder"
+                                Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
+                                BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                BorderThickness="1,1,1,0"
+                                Padding="10,4"
+                                Margin="0,0,2,0">
+                            <ContentPresenter ContentSource="Header"
+                                              TextElement.Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
+                                              TextElement.FontFamily="Consolas"
+                                              TextElement.FontSize="11" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected"
+                                     Value="True">
+                                <Setter TargetName="TabBorder"
+                                        Property="Background"
+                                        Value="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TabControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabControl">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TabPanel Grid.Row="0"
+                                      IsItemsHost="True"
+                                      Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}" />
+                            <Border Grid.Row="1"
+                                    Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
+                                    BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                    BorderThickness="1">
+                                <ContentPresenter ContentSource="SelectedContent" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </DataTemplate.Resources>
 
     <Grid Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}">
@@ -465,77 +517,306 @@
                       Width="6"
                       Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}" />
 
-        <!-- Detail panel -->
-        <Border Grid.Row="1"
-                Grid.Column="2"
-                BorderThickness="1"
-                CornerRadius="4"
-                Padding="12"
-                DataContext="{Binding SelectedItem, ElementName=NodeTree}"
-                Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
-                BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}">
-            <DockPanel LastChildFill="True">
-                <StackPanel DockPanel.Dock="Top"
-                            Margin="0,0,0,10">
-                    <TextBlock Text="{Binding Display}"
-                               FontFamily="Consolas"
-                               FontWeight="SemiBold"
-                               FontSize="16" />
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0,4,0,0">
-                        <Border Background="#3F3F46"
-                                CornerRadius="3"
-                                Padding="6,2">
-                            <TextBlock Text="{Binding Kind}"
+        <!-- Detail / End nodes tabs -->
+        <TabControl Grid.Row="1"
+                    Grid.Column="2"
+                    Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
+                    Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
+                    BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                    FontFamily="Consolas"
+                    FontSize="12">
+
+            <!-- Tab 1: Details -->
+            <TabItem Header="Details">
+                <Border DataContext="{Binding SelectedItem, ElementName=NodeTree}"
+                        Padding="12"
+                        Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
+                        TextElement.Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}">
+                    <DockPanel LastChildFill="True">
+                        <StackPanel DockPanel.Dock="Top"
+                                    Margin="0,0,0,10">
+                            <TextBlock Text="{Binding Display}"
                                        FontFamily="Consolas"
-                                       FontSize="11"
-                                       Foreground="#9CDCFE" />
-                        </Border>
-                        <TextBlock Text="  " />
-                        <TextBlock Text="{Binding NodeType}"
-                                   FontFamily="Consolas"
-                                   FontSize="11"
-                                   Opacity="0.6"
-                                   VerticalAlignment="Center" />
-                    </StackPanel>
-                    <TextBlock Text="{Binding TypeDisplay}"
-                               FontFamily="Consolas"
-                               FontSize="12"
-                               Foreground="#569CD6"
-                               Margin="0,4,0,0" />
-                </StackPanel>
-
-                <Border DockPanel.Dock="Top"
-                        Height="1"
-                        Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
-                        Margin="0,0,0,8" />
-
-                <ItemsControl ItemsSource="{Binding Details}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,3,0,3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="16" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0"
-                                           Text="{Binding Name}"
+                                       FontWeight="SemiBold"
+                                       FontSize="16" />
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0,4,0,0">
+                                <Border Background="#3F3F46"
+                                        CornerRadius="3"
+                                        Padding="6,2">
+                                    <TextBlock Text="{Binding Kind}"
+                                               FontFamily="Consolas"
+                                               FontSize="11"
+                                               Foreground="#9CDCFE" />
+                                </Border>
+                                <TextBlock Text="  " />
+                                <TextBlock Text="{Binding NodeType}"
                                            FontFamily="Consolas"
+                                           FontSize="11"
+                                           Opacity="0.6"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                            <TextBlock Text="{Binding TypeDisplay}"
+                                       FontFamily="Consolas"
+                                       FontSize="12"
+                                       Foreground="#569CD6"
+                                       Margin="0,4,0,0" />
+                        </StackPanel>
+
+                        <Border DockPanel.Dock="Top"
+                                Height="1"
+                                Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                Margin="0,0,0,8" />
+
+                        <ItemsControl ItemsSource="{Binding Details}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,3,0,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="16" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding Name}"
+                                                   FontFamily="Consolas"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="12"
+                                                   Foreground="#9CDCFE" />
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding Value}"
+                                                   FontFamily="Consolas"
+                                                   FontSize="12"
+                                                   TextWrapping="Wrap" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </DockPanel>
+                </Border>
+            </TabItem>
+
+            <!-- Tab 2: End nodes -->
+            <TabItem Header="End Nodes">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
+                              Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}">
+                    <StackPanel Margin="12">
+
+                        <!-- Parameters -->
+                        <StackPanel>
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasParameterEndNodes}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <Border Background="#3F3F46"
+                                    CornerRadius="3"
+                                    Padding="6,2"
+                                    Margin="0,0,0,4"
+                                    HorizontalAlignment="Left">
+                                <TextBlock Text="Parameters"
+                                           FontFamily="Consolas"
+                                           FontSize="11"
                                            FontWeight="SemiBold"
-                                           FontSize="12"
-                                           Foreground="#9CDCFE" />
-                                <TextBlock Grid.Column="2"
-                                           Text="{Binding Value}"
+                                           Foreground="#569CD6" />
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding ParameterEndNodes}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Padding="6,3"
+                                                Margin="0,1"
+                                                CornerRadius="2"
+                                                Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="12"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                                <TextBlock Text="  "
+                                                           FontSize="12" />
+                                                <TextBlock Text="{Binding TypeDisplay}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="11"
+                                                           Foreground="#569CD6"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+
+                        <!-- Constants -->
+                        <StackPanel Margin="0,8,0,0">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasConstantEndNodes}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <Border Background="#3F3F46"
+                                    CornerRadius="3"
+                                    Padding="6,2"
+                                    Margin="0,0,0,4"
+                                    HorizontalAlignment="Left">
+                                <TextBlock Text="Constants"
                                            FontFamily="Consolas"
-                                           FontSize="12"
-                                           TextWrapping="Wrap" />
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DockPanel>
-        </Border>
+                                           FontSize="11"
+                                           FontWeight="SemiBold"
+                                           Foreground="#B5CEA8" />
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding ConstantEndNodes}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Padding="6,3"
+                                                Margin="0,1"
+                                                CornerRadius="2"
+                                                Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="12"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                                <TextBlock Text="  "
+                                                           FontSize="12" />
+                                                <TextBlock Text="{Binding TypeDisplay}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="11"
+                                                           Foreground="#569CD6"
+                                                           VerticalAlignment="Center" />
+                                                <TextBlock Text="  = "
+                                                           FontFamily="Consolas"
+                                                           FontSize="11"
+                                                           Opacity="0.5"
+                                                           VerticalAlignment="Center" />
+                                                <TextBlock Text="{Binding Value}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="12"
+                                                           Foreground="#B5CEA8"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+
+                        <!-- Closed-vver variables -->
+                        <StackPanel Margin="0,8,0,0">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasClosedOverEndNodes}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <Border Background="#3F3F46"
+                                    CornerRadius="3"
+                                    Padding="6,2"
+                                    Margin="0,0,0,4"
+                                    HorizontalAlignment="Left">
+                                <TextBlock Text="Closed-Over Variables"
+                                           FontFamily="Consolas"
+                                           FontSize="11"
+                                           FontWeight="SemiBold"
+                                           Foreground="#9CDCFE" />
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding ClosedOverEndNodes}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Padding="6,3"
+                                                Margin="0,1"
+                                                CornerRadius="2"
+                                                Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="12"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                                <TextBlock Text="  "
+                                                           FontSize="12" />
+                                                <TextBlock Text="{Binding TypeDisplay}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="11"
+                                                           Foreground="#569CD6"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+
+                        <!-- Defaults -->
+                        <StackPanel Margin="0,8,0,0">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HasDefaultEndNodes}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <Border Background="#3F3F46"
+                                    CornerRadius="3"
+                                    Padding="6,2"
+                                    Margin="0,0,0,4"
+                                    HorizontalAlignment="Left">
+                                <TextBlock Text="Defaults"
+                                           FontFamily="Consolas"
+                                           FontSize="11"
+                                           FontWeight="SemiBold"
+                                           Foreground="#808080" />
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding DefaultEndNodes}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Padding="6,3"
+                                                Margin="0,1"
+                                                CornerRadius="2"
+                                                Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="12"
+                                                           FontWeight="SemiBold"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                                <TextBlock Text="  "
+                                                           FontSize="12" />
+                                                <TextBlock Text="{Binding TypeDisplay}"
+                                                           FontFamily="Consolas"
+                                                           FontSize="11"
+                                                           Foreground="#569CD6"
+                                                           VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
 
         <!-- Readable expression (code view) -->
         <Border Grid.Row="3"
@@ -545,8 +826,9 @@
                 Padding="4"
                 Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
                 BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}">
-            <StackPanel>
-                <TextBlock Text="Source Code"
+            <DockPanel LastChildFill="True">
+                <TextBlock DockPanel.Dock="Top"
+                           Text="Source Code"
                            FontSize="11"
                            FontWeight="SemiBold"
                            Opacity="0.6"
@@ -563,7 +845,7 @@
                          Padding="8"
                          Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
                          Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
-            </StackPanel>
+            </DockPanel>
         </Border>
     </Grid>
 </DataTemplate>
