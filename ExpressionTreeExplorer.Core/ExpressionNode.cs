@@ -10,6 +10,7 @@ public sealed class ExpressionNode : INotifyPropertyChanged
     private bool _isExpanded = true;
 
     [DataMember] public string Path { get; set; } = string.Empty;
+    [DataMember] public string RelationToParent { get; set; } = string.Empty;
     [DataMember] public string Kind { get; set; } = string.Empty;
     [DataMember] public string NodeType { get; set; } = string.Empty;
     [DataMember] public string Display { get; set; } = string.Empty;

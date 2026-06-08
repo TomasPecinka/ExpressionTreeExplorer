@@ -42,9 +42,9 @@ public static class ExpressionNodeBuilder
         }
     }
 
-    private static ExpressionNode BuildNode(Expression expr, string path, BuildContext ctx)
+    private static ExpressionNode BuildNode(Expression expr, string path, BuildContext ctx, string relationToParent = "")
     {
-        return expr switch
+        var node = expr switch
         {
             LambdaExpression lambda => BuildLambda(lambda, path, ctx),
             BinaryExpression binary => BuildBinary(binary, path, ctx),
@@ -71,6 +71,9 @@ public static class ExpressionNodeBuilder
 
             _ => BuildFallback(expr, path)
         };
+
+        node.RelationToParent = relationToParent;
+        return node;
     }
 
     private static ExpressionNode BuildLambda(LambdaExpression lambda, string path, BuildContext ctx)
@@ -89,7 +92,7 @@ public static class ExpressionNodeBuilder
             ],
             Children =
             [
-                BuildNode(lambda.Body, $"{path}/0", ctx)
+                BuildNode(lambda.Body, $"{path}/0", ctx, "Body")
             ]
         };
     }
@@ -110,8 +113,8 @@ public static class ExpressionNodeBuilder
             ],
             Children =
             [
-                BuildNode(binary.Left, $"{path}/0", ctx),
-                BuildNode(binary.Right, $"{path}/1", ctx)
+                BuildNode(binary.Left, $"{path}/0", ctx, "Left"),
+                BuildNode(binary.Right, $"{path}/1", ctx, "Right")
             ]
         };
     }
@@ -148,7 +151,7 @@ public static class ExpressionNodeBuilder
         {
             node.Children =
             [
-                BuildNode(member.Expression, $"{path}/0", ctx)
+                BuildNode(member.Expression, $"{path}/0", ctx, "Expression")
             ];
         }
 
@@ -217,12 +220,12 @@ public static class ExpressionNodeBuilder
 
         if (mc.Object != null)
         {
-            children.Add(BuildNode(mc.Object, $"{path}/{index++}", ctx));
+            children.Add(BuildNode(mc.Object, $"{path}/{index++}", ctx, "Object"));
         }
 
-        foreach (var arg in mc.Arguments)
+        for (var i = 0; i < mc.Arguments.Count; i++)
         {
-            children.Add(BuildNode(arg, $"{path}/{index++}", ctx));
+            children.Add(BuildNode(mc.Arguments[i], $"{path}/{index++}", ctx, $"Arguments[{i}]"));
         }
 
         return new ExpressionNode
@@ -264,7 +267,7 @@ public static class ExpressionNodeBuilder
             [
                 Detail("Method", u.Method?.Name ?? "-")
             ],
-            Children = [BuildNode(u.Operand, $"{path}/0", ctx)]
+            Children = [BuildNode(u.Operand, $"{path}/0", ctx, "Operand")]
         };
     }
 
@@ -272,31 +275,32 @@ public static class ExpressionNodeBuilder
     {
         var children = new List<ExpressionNode>
     {
-        BuildNode(mi.NewExpression, $"{path}/0", ctx)
+        BuildNode(mi.NewExpression, $"{path}/0", ctx, "NewExpression")
     };
 
         var index = 1;
 
-        foreach (var binding in mi.Bindings)
+        for (var i = 0; i < mi.Bindings.Count; i++)
         {
-            if (binding is MemberAssignment assignment)
+            if (mi.Bindings[i] is MemberAssignment assignment)
             {
                 var currentIndex = index++;
 
                 children.Add(new ExpressionNode
                 {
                     Path = $"{path}/{currentIndex}",
+                    RelationToParent = $"Bindings[{i}]",
                     Kind = "Binding",
                     NodeType = "MemberAssignment",
-                    Display = binding.Member.Name,
+                    Display = assignment.Member.Name,
                     TypeDisplay = assignment.Expression.Type.ToString(),
                     Details =
                     [
-                        Detail("Member", binding.Member.Name)
+                        Detail("Member", assignment.Member.Name)
                     ],
                     Children =
                     [
-                        BuildNode(assignment.Expression, $"{path}/{currentIndex}/0", ctx)
+                        BuildNode(assignment.Expression, $"{path}/{currentIndex}/0", ctx, "Expression")
                     ]
                 });
             }
@@ -332,9 +336,9 @@ public static class ExpressionNodeBuilder
             ],
             Children =
             [
-                BuildNode(c.Test, $"{path}/0", ctx),
-                BuildNode(c.IfTrue, $"{path}/1", ctx),
-                BuildNode(c.IfFalse, $"{path}/2", ctx)
+                BuildNode(c.Test, $"{path}/0", ctx, "Test"),
+                BuildNode(c.IfTrue, $"{path}/1", ctx, "IfTrue"),
+                BuildNode(c.IfFalse, $"{path}/2", ctx, "IfFalse")
             ]
         };
     }
@@ -344,7 +348,7 @@ public static class ExpressionNodeBuilder
         var children = new List<ExpressionNode>();
         for (var i = 0; i < n.Arguments.Count; i++)
         {
-            children.Add(BuildNode(n.Arguments[i], $"{path}/{i}", ctx));
+            children.Add(BuildNode(n.Arguments[i], $"{path}/{i}", ctx, $"Arguments[{i}]"));
         }
 
         return new ExpressionNode
@@ -378,7 +382,7 @@ public static class ExpressionNodeBuilder
             ],
             Children =
             [
-                BuildNode(t.Expression, $"{path}/0", ctx)
+                BuildNode(t.Expression, $"{path}/0", ctx, "Expression")
             ]
         };
     }
@@ -387,11 +391,11 @@ public static class ExpressionNodeBuilder
     {
         var children = new List<ExpressionNode>
         {
-            BuildNode(inv.Expression, $"{path}/0", ctx)
+            BuildNode(inv.Expression, $"{path}/0", ctx, "Expression")
         };
         for (var i = 0; i < inv.Arguments.Count; i++)
         {
-            children.Add(BuildNode(inv.Arguments[i], $"{path}/{i + 1}", ctx));
+            children.Add(BuildNode(inv.Arguments[i], $"{path}/{i + 1}", ctx, $"Arguments[{i}]"));
         }
 
         return new ExpressionNode
@@ -414,7 +418,7 @@ public static class ExpressionNodeBuilder
         var children = new List<ExpressionNode>();
         for (var i = 0; i < na.Expressions.Count; i++)
         {
-            children.Add(BuildNode(na.Expressions[i], $"{path}/{i}", ctx));
+            children.Add(BuildNode(na.Expressions[i], $"{path}/{i}", ctx, $"Expressions[{i}]"));
         }
 
         var elementType = na.Type.GetElementType();
@@ -438,7 +442,7 @@ public static class ExpressionNodeBuilder
     {
         var children = new List<ExpressionNode>
         {
-            BuildNode(li.NewExpression, $"{path}/0", ctx)
+            BuildNode(li.NewExpression, $"{path}/0", ctx, "NewExpression")
         };
 
         for (var i = 0; i < li.Initializers.Count; i++)
@@ -447,12 +451,13 @@ public static class ExpressionNodeBuilder
             var initChildren = new List<ExpressionNode>();
             for (var j = 0; j < init.Arguments.Count; j++)
             {
-                initChildren.Add(BuildNode(init.Arguments[j], $"{path}/{i + 1}/{j}", ctx));
+                initChildren.Add(BuildNode(init.Arguments[j], $"{path}/{i + 1}/{j}", ctx, $"Arguments[{j}]"));
             }
 
             children.Add(new ExpressionNode
             {
                 Path = $"{path}/{i + 1}",
+                RelationToParent = $"Initializers[{i}]",
                 Kind = "ElementInit",
                 NodeType = "ElementInit",
                 Display = init.AddMethod.Name,
@@ -488,12 +493,12 @@ public static class ExpressionNodeBuilder
 
         if (ix.Object != null)
         {
-            children.Add(BuildNode(ix.Object, $"{path}/{index++}", ctx));
+            children.Add(BuildNode(ix.Object, $"{path}/{index++}", ctx, "Object"));
         }
 
-        foreach (var arg in ix.Arguments)
+        for (var i = 0; i < ix.Arguments.Count; i++)
         {
-            children.Add(BuildNode(arg, $"{path}/{index++}", ctx));
+            children.Add(BuildNode(ix.Arguments[i], $"{path}/{index++}", ctx, $"Arguments[{i}]"));
         }
 
         return new ExpressionNode
@@ -540,14 +545,14 @@ public static class ExpressionNodeBuilder
         var children = new List<ExpressionNode>();
         var index = 0;
 
-        foreach (var variable in b.Variables)
+        for (var i = 0; i < b.Variables.Count; i++)
         {
-            children.Add(BuildNode(variable, $"{path}/{index++}", ctx));
+            children.Add(BuildNode(b.Variables[i], $"{path}/{index++}", ctx, $"Variables[{i}]"));
         }
 
-        foreach (var expr in b.Expressions)
+        for (var i = 0; i < b.Expressions.Count; i++)
         {
-            children.Add(BuildNode(expr, $"{path}/{index++}", ctx));
+            children.Add(BuildNode(b.Expressions[i], $"{path}/{index++}", ctx, $"Expressions[{i}]"));
         }
 
         return new ExpressionNode
@@ -570,25 +575,27 @@ public static class ExpressionNodeBuilder
     {
         var children = new List<ExpressionNode>
         {
-            BuildNode(t.Body, $"{path}/0", ctx)
+            BuildNode(t.Body, $"{path}/0", ctx, "Body")
         };
 
         var index = 1;
-        foreach (var handler in t.Handlers)
+        for (var i = 0; i < t.Handlers.Count; i++)
         {
+            var handler = t.Handlers[i];
             var handlerChildren = new List<ExpressionNode>();
             var handlerIndex = 0;
 
             if (handler.Filter != null)
             {
-                handlerChildren.Add(BuildNode(handler.Filter, $"{path}/{index}/{handlerIndex++}", ctx));
+                handlerChildren.Add(BuildNode(handler.Filter, $"{path}/{index}/{handlerIndex++}", ctx, "Filter"));
             }
 
-            handlerChildren.Add(BuildNode(handler.Body, $"{path}/{index}/{handlerIndex}", ctx));
+            handlerChildren.Add(BuildNode(handler.Body, $"{path}/{index}/{handlerIndex}", ctx, "Body"));
 
             children.Add(new ExpressionNode
             {
                 Path = $"{path}/{index}",
+                RelationToParent = $"Handlers[{i}]",
                 Kind = "CatchBlock",
                 NodeType = "CatchBlock",
                 Display = $"catch ({SimplifyType(handler.Test)})",
@@ -605,12 +612,12 @@ public static class ExpressionNodeBuilder
 
         if (t.Finally != null)
         {
-            children.Add(BuildNode(t.Finally, $"{path}/{index++}", ctx));
+            children.Add(BuildNode(t.Finally, $"{path}/{index++}", ctx, "Finally"));
         }
 
         if (t.Fault != null)
         {
-            children.Add(BuildNode(t.Fault, $"{path}/{index}", ctx));
+            children.Add(BuildNode(t.Fault, $"{path}/{index}", ctx, "Fault"));
         }
 
         return new ExpressionNode
@@ -634,25 +641,27 @@ public static class ExpressionNodeBuilder
     {
         var children = new List<ExpressionNode>
         {
-            BuildNode(s.SwitchValue, $"{path}/0", ctx)
+            BuildNode(s.SwitchValue, $"{path}/0", ctx, "SwitchValue")
         };
 
         var index = 1;
-        foreach (var c in s.Cases)
+        for (var i = 0; i < s.Cases.Count; i++)
         {
+            var c = s.Cases[i];
             var caseChildren = new List<ExpressionNode>();
             var caseIndex = 0;
 
-            foreach (var testValue in c.TestValues)
+            for (var j = 0; j < c.TestValues.Count; j++)
             {
-                caseChildren.Add(BuildNode(testValue, $"{path}/{index}/{caseIndex++}", ctx));
+                caseChildren.Add(BuildNode(c.TestValues[j], $"{path}/{index}/{caseIndex++}", ctx, $"TestValues[{j}]"));
             }
 
-            caseChildren.Add(BuildNode(c.Body, $"{path}/{index}/{caseIndex}", ctx));
+            caseChildren.Add(BuildNode(c.Body, $"{path}/{index}/{caseIndex}", ctx, "Body"));
 
             children.Add(new ExpressionNode
             {
                 Path = $"{path}/{index}",
+                RelationToParent = $"Cases[{i}]",
                 Kind = "SwitchCase",
                 NodeType = "SwitchCase",
                 Display = "case",
@@ -668,7 +677,7 @@ public static class ExpressionNodeBuilder
 
         if (s.DefaultBody != null)
         {
-            children.Add(BuildNode(s.DefaultBody, $"{path}/{index}", ctx));
+            children.Add(BuildNode(s.DefaultBody, $"{path}/{index}", ctx, "DefaultBody"));
         }
 
         return new ExpressionNode
@@ -692,7 +701,7 @@ public static class ExpressionNodeBuilder
         var children = new List<ExpressionNode>();
         if (g.Value != null)
         {
-            children.Add(BuildNode(g.Value, $"{path}/0", ctx));
+            children.Add(BuildNode(g.Value, $"{path}/0", ctx, "Value"));
         }
 
         return new ExpressionNode
@@ -716,7 +725,7 @@ public static class ExpressionNodeBuilder
         var children = new List<ExpressionNode>();
         if (l.DefaultValue != null)
         {
-            children.Add(BuildNode(l.DefaultValue, $"{path}/0", ctx));
+            children.Add(BuildNode(l.DefaultValue, $"{path}/0", ctx, "DefaultValue"));
         }
 
         return new ExpressionNode
@@ -750,7 +759,7 @@ public static class ExpressionNodeBuilder
             ],
             Children =
             [
-                BuildNode(l.Body, $"{path}/0", ctx)
+                BuildNode(l.Body, $"{path}/0", ctx, "Body")
             ]
         };
     }
