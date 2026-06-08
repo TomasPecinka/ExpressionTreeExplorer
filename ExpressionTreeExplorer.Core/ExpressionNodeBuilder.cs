@@ -20,6 +20,7 @@ public static class ExpressionNodeBuilder
         var spanResult = SpanTrackingFormatter.Format(expr);
 
         AssignSourceLines(root, spanResult.Text, new List<SourceSpan>(spanResult.Spans));
+        AssignWatchExpressions(root, root);
 
         return new ExpressionPayload
         {
@@ -30,6 +31,16 @@ public static class ExpressionNodeBuilder
             EndNodes = ctx.EndNodes,
             SourceSpans = new List<SourceSpan>(spanResult.Spans),
         };
+    }
+
+    private static void AssignWatchExpressions(ExpressionNode node, ExpressionNode root)
+    {
+        node.WatchExpression = WatchExpressionGenerator.Generate(root, node.Path);
+
+        foreach (var child in node.Children)
+        {
+            AssignWatchExpressions(child, root);
+        }
     }
 
     private static void AssignSourceLines(ExpressionNode node, string text, List<SourceSpan> spans)
