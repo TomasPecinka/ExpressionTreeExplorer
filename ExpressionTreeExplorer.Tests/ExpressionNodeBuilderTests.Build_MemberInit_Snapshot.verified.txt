@@ -2,6 +2,7 @@
   Roots: [
     {
       Path: 0,
+      RelationToParent: ,
       Kind: Lambda,
       NodeType: Lambda,
       Display: Lambda (x),
@@ -19,6 +20,7 @@
       Children: [
         {
           Path: 0/0,
+          RelationToParent: Body,
           Kind: MemberInit,
           NodeType: MemberInit,
           Display: MemberInit,
@@ -32,6 +34,7 @@
           Children: [
             {
               Path: 0/0/0,
+              RelationToParent: NewExpression,
               Kind: New,
               NodeType: New,
               Display: new UserDto,
@@ -46,56 +49,85 @@
                   Value: 0
                 }
               ],
-              SourceTokens: [
+              SourceLines: [
                 {
-                  Text: x => ,
-                  IsHighlighted: false
+                  Tokens: [
+                    {
+                      Text: x => ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: new UserDto(),
+                      IsHighlighted: true
+                    }
+                  ]
                 },
                 {
-                  Text: new UserDto(),
-                  IsHighlighted: true
+                  Tokens: [
+                    {
+                      Text: {,
+                      IsHighlighted: false
+                    }
+                  ]
                 },
                 {
-                  Text:  { ,
-                  IsHighlighted: false
+                  Tokens: [
+                    {
+                      Text:     ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: FullName = ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: .Name,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: ,,
+                      IsHighlighted: false
+                    }
+                  ]
                 },
                 {
-                  Text: FullName = ,
-                  IsHighlighted: false
+                  Tokens: [
+                    {
+                      Text:     ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: Age = ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: .Age,
+                      IsHighlighted: false
+                    }
+                  ]
                 },
                 {
-                  Text: x,
-                  IsHighlighted: false
-                },
-                {
-                  Text: .Name,
-                  IsHighlighted: false
-                },
-                {
-                  Text: , ,
-                  IsHighlighted: false
-                },
-                {
-                  Text: Age = ,
-                  IsHighlighted: false
-                },
-                {
-                  Text: x,
-                  IsHighlighted: false
-                },
-                {
-                  Text: .Age,
-                  IsHighlighted: false
-                },
-                {
-                  Text:  },
-                  IsHighlighted: false
+                  Tokens: [
+                    {
+                      Text: },
+                      IsHighlighted: false
+                    }
+                  ]
                 }
               ],
               IsExpanded: true
             },
             {
               Path: 0/0/1,
+              RelationToParent: Bindings[0],
               Kind: Binding,
               NodeType: MemberAssignment,
               Display: FullName,
@@ -109,6 +141,7 @@
               Children: [
                 {
                   Path: 0/0/1/0,
+                  RelationToParent: Expression,
                   Kind: Member,
                   NodeType: MemberAccess,
                   Display: Name,
@@ -126,6 +159,7 @@
                   Children: [
                     {
                       Path: 0/0/1/0/0,
+                      RelationToParent: Expression,
                       Kind: Parameter,
                       NodeType: Parameter,
                       Display: x,
@@ -136,7 +170,86 @@
                           Value: False
                         }
                       ],
-                      SourceTokens: [
+                      SourceLines: [
+                        {
+                          Tokens: [
+                            {
+                              Text: x => ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: new UserDto(),
+                              IsHighlighted: false
+                            }
+                          ]
+                        },
+                        {
+                          Tokens: [
+                            {
+                              Text: {,
+                              IsHighlighted: false
+                            }
+                          ]
+                        },
+                        {
+                          Tokens: [
+                            {
+                              Text:     ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: FullName = ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: x,
+                              IsHighlighted: true
+                            },
+                            {
+                              Text: .Name,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: ,,
+                              IsHighlighted: false
+                            }
+                          ]
+                        },
+                        {
+                          Tokens: [
+                            {
+                              Text:     ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: Age = ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: x,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: .Age,
+                              IsHighlighted: false
+                            }
+                          ]
+                        },
+                        {
+                          Tokens: [
+                            {
+                              Text: },
+                              IsHighlighted: false
+                            }
+                          ]
+                        }
+                      ],
+                      IsExpanded: true
+                    }
+                  ],
+                  SourceLines: [
+                    {
+                      Tokens: [
                         {
                           Text: x => ,
                           IsHighlighted: false
@@ -144,9 +257,21 @@
                         {
                           Text: new UserDto(),
                           IsHighlighted: false
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      Tokens: [
                         {
-                          Text:  { ,
+                          Text: {,
+                          IsHighlighted: false
+                        }
+                      ]
+                    },
+                    {
+                      Tokens: [
+                        {
+                          Text:     ,
                           IsHighlighted: false
                         },
                         {
@@ -159,10 +284,18 @@
                         },
                         {
                           Text: .Name,
-                          IsHighlighted: false
+                          IsHighlighted: true
                         },
                         {
-                          Text: , ,
+                          Text: ,,
+                          IsHighlighted: false
+                        }
+                      ]
+                    },
+                    {
+                      Tokens: [
+                        {
+                          Text:     ,
                           IsHighlighted: false
                         },
                         {
@@ -176,16 +309,24 @@
                         {
                           Text: .Age,
                           IsHighlighted: false
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      Tokens: [
                         {
-                          Text:  },
+                          Text: },
                           IsHighlighted: false
                         }
-                      ],
-                      IsExpanded: true
+                      ]
                     }
                   ],
-                  SourceTokens: [
+                  IsExpanded: true
+                }
+              ],
+              SourceLines: [
+                {
+                  Tokens: [
                     {
                       Text: x => ,
                       IsHighlighted: false
@@ -193,14 +334,26 @@
                     {
                       Text: new UserDto(),
                       IsHighlighted: false
-                    },
+                    }
+                  ]
+                },
+                {
+                  Tokens: [
                     {
-                      Text:  { ,
+                      Text: {,
+                      IsHighlighted: false
+                    }
+                  ]
+                },
+                {
+                  Tokens: [
+                    {
+                      Text:     ,
                       IsHighlighted: false
                     },
                     {
                       Text: FullName = ,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     },
                     {
                       Text: x,
@@ -211,7 +364,15 @@
                       IsHighlighted: true
                     },
                     {
-                      Text: , ,
+                      Text: ,,
+                      IsHighlighted: false
+                    }
+                  ]
+                },
+                {
+                  Tokens: [
+                    {
+                      Text:     ,
                       IsHighlighted: false
                     },
                     {
@@ -225,65 +386,23 @@
                     {
                       Text: .Age,
                       IsHighlighted: false
-                    },
+                    }
+                  ]
+                },
+                {
+                  Tokens: [
                     {
-                      Text:  },
+                      Text: },
                       IsHighlighted: false
                     }
-                  ],
-                  IsExpanded: true
-                }
-              ],
-              SourceTokens: [
-                {
-                  Text: x => ,
-                  IsHighlighted: false
-                },
-                {
-                  Text: new UserDto(),
-                  IsHighlighted: false
-                },
-                {
-                  Text:  { ,
-                  IsHighlighted: false
-                },
-                {
-                  Text: FullName = ,
-                  IsHighlighted: true
-                },
-                {
-                  Text: x,
-                  IsHighlighted: true
-                },
-                {
-                  Text: .Name,
-                  IsHighlighted: true
-                },
-                {
-                  Text: , ,
-                  IsHighlighted: false
-                },
-                {
-                  Text: Age = ,
-                  IsHighlighted: false
-                },
-                {
-                  Text: x,
-                  IsHighlighted: false
-                },
-                {
-                  Text: .Age,
-                  IsHighlighted: false
-                },
-                {
-                  Text:  },
-                  IsHighlighted: false
+                  ]
                 }
               ],
               IsExpanded: true
             },
             {
               Path: 0/0/2,
+              RelationToParent: Bindings[1],
               Kind: Binding,
               NodeType: MemberAssignment,
               Display: Age,
@@ -297,6 +416,7 @@
               Children: [
                 {
                   Path: 0/0/2/0,
+                  RelationToParent: Expression,
                   Kind: Member,
                   NodeType: MemberAccess,
                   Display: Age,
@@ -314,6 +434,7 @@
                   Children: [
                     {
                       Path: 0/0/2/0/0,
+                      RelationToParent: Expression,
                       Kind: Parameter,
                       NodeType: Parameter,
                       Display: x,
@@ -324,7 +445,86 @@
                           Value: False
                         }
                       ],
-                      SourceTokens: [
+                      SourceLines: [
+                        {
+                          Tokens: [
+                            {
+                              Text: x => ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: new UserDto(),
+                              IsHighlighted: false
+                            }
+                          ]
+                        },
+                        {
+                          Tokens: [
+                            {
+                              Text: {,
+                              IsHighlighted: false
+                            }
+                          ]
+                        },
+                        {
+                          Tokens: [
+                            {
+                              Text:     ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: FullName = ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: x,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: .Name,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: ,,
+                              IsHighlighted: false
+                            }
+                          ]
+                        },
+                        {
+                          Tokens: [
+                            {
+                              Text:     ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: Age = ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: x,
+                              IsHighlighted: true
+                            },
+                            {
+                              Text: .Age,
+                              IsHighlighted: false
+                            }
+                          ]
+                        },
+                        {
+                          Tokens: [
+                            {
+                              Text: },
+                              IsHighlighted: false
+                            }
+                          ]
+                        }
+                      ],
+                      IsExpanded: true
+                    }
+                  ],
+                  SourceLines: [
+                    {
+                      Tokens: [
                         {
                           Text: x => ,
                           IsHighlighted: false
@@ -332,9 +532,21 @@
                         {
                           Text: new UserDto(),
                           IsHighlighted: false
-                        },
+                        }
+                      ]
+                    },
+                    {
+                      Tokens: [
                         {
-                          Text:  { ,
+                          Text: {,
+                          IsHighlighted: false
+                        }
+                      ]
+                    },
+                    {
+                      Tokens: [
+                        {
+                          Text:     ,
                           IsHighlighted: false
                         },
                         {
@@ -350,7 +562,15 @@
                           IsHighlighted: false
                         },
                         {
-                          Text: , ,
+                          Text: ,,
+                          IsHighlighted: false
+                        }
+                      ]
+                    },
+                    {
+                      Tokens: [
+                        {
+                          Text:     ,
                           IsHighlighted: false
                         },
                         {
@@ -363,17 +583,25 @@
                         },
                         {
                           Text: .Age,
-                          IsHighlighted: false
-                        },
+                          IsHighlighted: true
+                        }
+                      ]
+                    },
+                    {
+                      Tokens: [
                         {
-                          Text:  },
+                          Text: },
                           IsHighlighted: false
                         }
-                      ],
-                      IsExpanded: true
+                      ]
                     }
                   ],
-                  SourceTokens: [
+                  IsExpanded: true
+                }
+              ],
+              SourceLines: [
+                {
+                  Tokens: [
                     {
                       Text: x => ,
                       IsHighlighted: false
@@ -381,9 +609,21 @@
                     {
                       Text: new UserDto(),
                       IsHighlighted: false
-                    },
+                    }
+                  ]
+                },
+                {
+                  Tokens: [
                     {
-                      Text:  { ,
+                      Text: {,
+                      IsHighlighted: false
+                    }
+                  ]
+                },
+                {
+                  Tokens: [
+                    {
+                      Text:     ,
                       IsHighlighted: false
                     },
                     {
@@ -399,12 +639,20 @@
                       IsHighlighted: false
                     },
                     {
-                      Text: , ,
+                      Text: ,,
+                      IsHighlighted: false
+                    }
+                  ]
+                },
+                {
+                  Tokens: [
+                    {
+                      Text:     ,
                       IsHighlighted: false
                     },
                     {
                       Text: Age = ,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     },
                     {
                       Text: x,
@@ -413,43 +661,71 @@
                     {
                       Text: .Age,
                       IsHighlighted: true
-                    },
+                    }
+                  ]
+                },
+                {
+                  Tokens: [
                     {
-                      Text:  },
+                      Text: },
                       IsHighlighted: false
                     }
-                  ],
-                  IsExpanded: true
+                  ]
                 }
               ],
-              SourceTokens: [
+              IsExpanded: true
+            }
+          ],
+          SourceLines: [
+            {
+              Tokens: [
                 {
                   Text: x => ,
                   IsHighlighted: false
                 },
                 {
                   Text: new UserDto(),
-                  IsHighlighted: false
-                },
+                  IsHighlighted: true
+                }
+              ]
+            },
+            {
+              Tokens: [
                 {
-                  Text:  { ,
-                  IsHighlighted: false
+                  Text: {,
+                  IsHighlighted: true
+                }
+              ]
+            },
+            {
+              Tokens: [
+                {
+                  Text:     ,
+                  IsHighlighted: true
                 },
                 {
                   Text: FullName = ,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: x,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: .Name,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
-                  Text: , ,
-                  IsHighlighted: false
+                  Text: ,,
+                  IsHighlighted: true
+                }
+              ]
+            },
+            {
+              Tokens: [
+                {
+                  Text:     ,
+                  IsHighlighted: true
                 },
                 {
                   Text: Age = ,
@@ -462,26 +738,46 @@
                 {
                   Text: .Age,
                   IsHighlighted: true
-                },
-                {
-                  Text:  },
-                  IsHighlighted: false
                 }
-              ],
-              IsExpanded: true
+              ]
+            },
+            {
+              Tokens: [
+                {
+                  Text: },
+                  IsHighlighted: true
+                }
+              ]
             }
           ],
-          SourceTokens: [
+          IsExpanded: true
+        }
+      ],
+      SourceLines: [
+        {
+          Tokens: [
             {
               Text: x => ,
-              IsHighlighted: false
+              IsHighlighted: true
             },
             {
               Text: new UserDto(),
               IsHighlighted: true
-            },
+            }
+          ]
+        },
+        {
+          Tokens: [
             {
-              Text:  { ,
+              Text: {,
+              IsHighlighted: true
+            }
+          ]
+        },
+        {
+          Tokens: [
+            {
+              Text:     ,
               IsHighlighted: true
             },
             {
@@ -497,7 +793,15 @@
               IsHighlighted: true
             },
             {
-              Text: , ,
+              Text: ,,
+              IsHighlighted: true
+            }
+          ]
+        },
+        {
+          Tokens: [
+            {
+              Text:     ,
               IsHighlighted: true
             },
             {
@@ -511,65 +815,27 @@
             {
               Text: .Age,
               IsHighlighted: true
-            },
+            }
+          ]
+        },
+        {
+          Tokens: [
             {
-              Text:  },
+              Text: },
               IsHighlighted: true
             }
-          ],
-          IsExpanded: true
-        }
-      ],
-      SourceTokens: [
-        {
-          Text: x => ,
-          IsHighlighted: true
-        },
-        {
-          Text: new UserDto(),
-          IsHighlighted: true
-        },
-        {
-          Text:  { ,
-          IsHighlighted: true
-        },
-        {
-          Text: FullName = ,
-          IsHighlighted: true
-        },
-        {
-          Text: x,
-          IsHighlighted: true
-        },
-        {
-          Text: .Name,
-          IsHighlighted: true
-        },
-        {
-          Text: , ,
-          IsHighlighted: true
-        },
-        {
-          Text: Age = ,
-          IsHighlighted: true
-        },
-        {
-          Text: x,
-          IsHighlighted: true
-        },
-        {
-          Text: .Age,
-          IsHighlighted: true
-        },
-        {
-          Text:  },
-          IsHighlighted: true
+          ]
         }
       ],
       IsExpanded: true
     }
   ],
-  ReadableText: x => new UserDto() { FullName = x.Name, Age = x.Age },
+  ReadableText:
+x => new UserDto()
+{
+    FullName = x.Name,
+    Age = x.Age
+},
   DebugText: x => new UserDto() {FullName = x.Name, Age = x.Age},
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto],
   EndNodes: [
@@ -596,42 +862,42 @@
     },
     {
       Path: 0/0/1/0/0,
-      Start: 32,
+      Start: 36,
       Length: 1
     },
     {
       Path: 0/0/1/0,
-      Start: 32,
+      Start: 36,
       Length: 6
     },
     {
       Path: 0/0/1,
-      Start: 21,
+      Start: 25,
       Length: 17
     },
     {
       Path: 0/0/2/0/0,
-      Start: 46,
+      Start: 54,
       Length: 1
     },
     {
       Path: 0/0/2/0,
-      Start: 46,
+      Start: 54,
       Length: 5
     },
     {
       Path: 0/0/2,
-      Start: 40,
+      Start: 48,
       Length: 11
     },
     {
       Path: 0/0,
       Start: 5,
-      Length: 48
+      Length: 56
     },
     {
       Path: 0,
-      Length: 53
+      Length: 61
     }
   ]
 }

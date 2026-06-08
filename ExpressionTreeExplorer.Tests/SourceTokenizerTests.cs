@@ -101,7 +101,7 @@ public class SourceTokenizerTests
         var payload = ExpressionNodeBuilder.Build(expr);
 
         var allNodes = CollectAllNodes(payload.Roots[0]);
-        Assert.All(allNodes, n => Assert.NotEmpty(n.SourceTokens));
+        Assert.All(allNodes, n => Assert.NotEmpty(n.SourceLines));
     }
 
     [Fact]
@@ -112,7 +112,7 @@ public class SourceTokenizerTests
 
         foreach (var node in CollectAllNodes(payload.Roots[0]))
         {
-            var joined = string.Concat(node.SourceTokens.Select(t => t.Text));
+            var joined = string.Concat(node.SourceLines.SelectMany(l => l.Tokens).Select(t => t.Text));
             Assert.Equal(payload.ReadableText, joined);
         }
     }

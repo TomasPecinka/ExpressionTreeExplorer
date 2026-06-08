@@ -2,6 +2,7 @@
   Roots: [
     {
       Path: 0,
+      RelationToParent: ,
       Kind: Lambda,
       NodeType: Lambda,
       Display: Lambda (x),
@@ -19,6 +20,7 @@
       Children: [
         {
           Path: 0/0,
+          RelationToParent: Body,
           Kind: Unary,
           NodeType: Convert,
           Display: Convert → Double,
@@ -32,6 +34,7 @@
           Children: [
             {
               Path: 0/0/0,
+              RelationToParent: Operand,
               Kind: Member,
               NodeType: MemberAccess,
               Display: Age,
@@ -49,6 +52,7 @@
               Children: [
                 {
                   Path: 0/0/0/0,
+                  RelationToParent: Expression,
                   Kind: Parameter,
                   NodeType: Parameter,
                   Display: x,
@@ -59,7 +63,34 @@
                       Value: False
                     }
                   ],
-                  SourceTokens: [
+                  SourceLines: [
+                    {
+                      Tokens: [
+                        {
+                          Text: x => ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: (double),
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: true
+                        },
+                        {
+                          Text: .Age,
+                          IsHighlighted: false
+                        }
+                      ]
+                    }
+                  ],
+                  IsExpanded: true
+                }
+              ],
+              SourceLines: [
+                {
+                  Tokens: [
                     {
                       Text: x => ,
                       IsHighlighted: false
@@ -74,20 +105,24 @@
                     },
                     {
                       Text: .Age,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     }
-                  ],
-                  IsExpanded: true
+                  ]
                 }
               ],
-              SourceTokens: [
+              IsExpanded: true
+            }
+          ],
+          SourceLines: [
+            {
+              Tokens: [
                 {
                   Text: x => ,
                   IsHighlighted: false
                 },
                 {
                   Text: (double),
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: x,
@@ -97,14 +132,18 @@
                   Text: .Age,
                   IsHighlighted: true
                 }
-              ],
-              IsExpanded: true
+              ]
             }
           ],
-          SourceTokens: [
+          IsExpanded: true
+        }
+      ],
+      SourceLines: [
+        {
+          Tokens: [
             {
               Text: x => ,
-              IsHighlighted: false
+              IsHighlighted: true
             },
             {
               Text: (double),
@@ -118,26 +157,7 @@
               Text: .Age,
               IsHighlighted: true
             }
-          ],
-          IsExpanded: true
-        }
-      ],
-      SourceTokens: [
-        {
-          Text: x => ,
-          IsHighlighted: true
-        },
-        {
-          Text: (double),
-          IsHighlighted: true
-        },
-        {
-          Text: x,
-          IsHighlighted: true
-        },
-        {
-          Text: .Age,
-          IsHighlighted: true
+          ]
         }
       ],
       IsExpanded: true

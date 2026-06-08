@@ -2,6 +2,7 @@
   Roots: [
     {
       Path: 0,
+      RelationToParent: ,
       Kind: Lambda,
       NodeType: Lambda,
       Display: Lambda (x),
@@ -19,6 +20,7 @@
       Children: [
         {
           Path: 0/0,
+          RelationToParent: Body,
           Kind: Binary,
           NodeType: AndAlso,
           Display: AndAlso,
@@ -36,6 +38,7 @@
           Children: [
             {
               Path: 0/0/0,
+              RelationToParent: Left,
               Kind: Binary,
               NodeType: GreaterThan,
               Display: GreaterThan,
@@ -53,6 +56,7 @@
               Children: [
                 {
                   Path: 0/0/0/0,
+                  RelationToParent: Left,
                   Kind: Member,
                   NodeType: MemberAccess,
                   Display: Age,
@@ -70,6 +74,7 @@
                   Children: [
                     {
                       Path: 0/0/0/0/0,
+                      RelationToParent: Expression,
                       Kind: Parameter,
                       NodeType: Parameter,
                       Display: x,
@@ -80,7 +85,66 @@
                           Value: False
                         }
                       ],
-                      SourceTokens: [
+                      SourceLines: [
+                        {
+                          Tokens: [
+                            {
+                              Text: x => ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: (,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: x,
+                              IsHighlighted: true
+                            },
+                            {
+                              Text: .Age,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text:  > ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: 20,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: ) && (,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: x,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: .Age,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text:  < ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: 30,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: ),
+                              IsHighlighted: false
+                            }
+                          ]
+                        }
+                      ],
+                      IsExpanded: true
+                    }
+                  ],
+                  SourceLines: [
+                    {
+                      Tokens: [
                         {
                           Text: x => ,
                           IsHighlighted: false
@@ -95,7 +159,7 @@
                         },
                         {
                           Text: .Age,
-                          IsHighlighted: false
+                          IsHighlighted: true
                         },
                         {
                           Text:  > ,
@@ -129,64 +193,14 @@
                           Text: ),
                           IsHighlighted: false
                         }
-                      ],
-                      IsExpanded: true
-                    }
-                  ],
-                  SourceTokens: [
-                    {
-                      Text: x => ,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: (,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: x,
-                      IsHighlighted: true
-                    },
-                    {
-                      Text: .Age,
-                      IsHighlighted: true
-                    },
-                    {
-                      Text:  > ,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: 20,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: ) && (,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: x,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: .Age,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text:  < ,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: 30,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: ),
-                      IsHighlighted: false
+                      ]
                     }
                   ],
                   IsExpanded: true
                 },
                 {
                   Path: 0/0/0/1,
+                  RelationToParent: Right,
                   Kind: Constant,
                   NodeType: Constant,
                   Display: 20,
@@ -201,7 +215,66 @@
                       Value: Int32
                     }
                   ],
-                  SourceTokens: [
+                  SourceLines: [
+                    {
+                      Tokens: [
+                        {
+                          Text: x => ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: (,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: .Age,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text:  > ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: 20,
+                          IsHighlighted: true
+                        },
+                        {
+                          Text: ) && (,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: .Age,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text:  < ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: 30,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: ),
+                          IsHighlighted: false
+                        }
+                      ]
+                    }
+                  ],
+                  IsExpanded: true
+                }
+              ],
+              SourceLines: [
+                {
+                  Tokens: [
                     {
                       Text: x => ,
                       IsHighlighted: false
@@ -212,15 +285,15 @@
                     },
                     {
                       Text: x,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     },
                     {
                       Text: .Age,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     },
                     {
                       Text:  > ,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     },
                     {
                       Text: 20,
@@ -250,64 +323,14 @@
                       Text: ),
                       IsHighlighted: false
                     }
-                  ],
-                  IsExpanded: true
-                }
-              ],
-              SourceTokens: [
-                {
-                  Text: x => ,
-                  IsHighlighted: false
-                },
-                {
-                  Text: (,
-                  IsHighlighted: false
-                },
-                {
-                  Text: x,
-                  IsHighlighted: true
-                },
-                {
-                  Text: .Age,
-                  IsHighlighted: true
-                },
-                {
-                  Text:  > ,
-                  IsHighlighted: true
-                },
-                {
-                  Text: 20,
-                  IsHighlighted: true
-                },
-                {
-                  Text: ) && (,
-                  IsHighlighted: false
-                },
-                {
-                  Text: x,
-                  IsHighlighted: false
-                },
-                {
-                  Text: .Age,
-                  IsHighlighted: false
-                },
-                {
-                  Text:  < ,
-                  IsHighlighted: false
-                },
-                {
-                  Text: 30,
-                  IsHighlighted: false
-                },
-                {
-                  Text: ),
-                  IsHighlighted: false
+                  ]
                 }
               ],
               IsExpanded: true
             },
             {
               Path: 0/0/1,
+              RelationToParent: Right,
               Kind: Binary,
               NodeType: LessThan,
               Display: LessThan,
@@ -325,6 +348,7 @@
               Children: [
                 {
                   Path: 0/0/1/0,
+                  RelationToParent: Left,
                   Kind: Member,
                   NodeType: MemberAccess,
                   Display: Age,
@@ -342,6 +366,7 @@
                   Children: [
                     {
                       Path: 0/0/1/0/0,
+                      RelationToParent: Expression,
                       Kind: Parameter,
                       NodeType: Parameter,
                       Display: x,
@@ -352,7 +377,66 @@
                           Value: False
                         }
                       ],
-                      SourceTokens: [
+                      SourceLines: [
+                        {
+                          Tokens: [
+                            {
+                              Text: x => ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: (,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: x,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: .Age,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text:  > ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: 20,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: ) && (,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: x,
+                              IsHighlighted: true
+                            },
+                            {
+                              Text: .Age,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text:  < ,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: 30,
+                              IsHighlighted: false
+                            },
+                            {
+                              Text: ),
+                              IsHighlighted: false
+                            }
+                          ]
+                        }
+                      ],
+                      IsExpanded: true
+                    }
+                  ],
+                  SourceLines: [
+                    {
+                      Tokens: [
                         {
                           Text: x => ,
                           IsHighlighted: false
@@ -387,7 +471,7 @@
                         },
                         {
                           Text: .Age,
-                          IsHighlighted: false
+                          IsHighlighted: true
                         },
                         {
                           Text:  < ,
@@ -401,64 +485,14 @@
                           Text: ),
                           IsHighlighted: false
                         }
-                      ],
-                      IsExpanded: true
-                    }
-                  ],
-                  SourceTokens: [
-                    {
-                      Text: x => ,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: (,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: x,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: .Age,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text:  > ,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: 20,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: ) && (,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: x,
-                      IsHighlighted: true
-                    },
-                    {
-                      Text: .Age,
-                      IsHighlighted: true
-                    },
-                    {
-                      Text:  < ,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: 30,
-                      IsHighlighted: false
-                    },
-                    {
-                      Text: ),
-                      IsHighlighted: false
+                      ]
                     }
                   ],
                   IsExpanded: true
                 },
                 {
                   Path: 0/0/1/1,
+                  RelationToParent: Right,
                   Kind: Constant,
                   NodeType: Constant,
                   Display: 30,
@@ -473,7 +507,66 @@
                       Value: Int32
                     }
                   ],
-                  SourceTokens: [
+                  SourceLines: [
+                    {
+                      Tokens: [
+                        {
+                          Text: x => ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: (,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: .Age,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text:  > ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: 20,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: ) && (,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: .Age,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text:  < ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: 30,
+                          IsHighlighted: true
+                        },
+                        {
+                          Text: ),
+                          IsHighlighted: false
+                        }
+                      ]
+                    }
+                  ],
+                  IsExpanded: true
+                }
+              ],
+              SourceLines: [
+                {
+                  Tokens: [
                     {
                       Text: x => ,
                       IsHighlighted: false
@@ -504,15 +597,15 @@
                     },
                     {
                       Text: x,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     },
                     {
                       Text: .Age,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     },
                     {
                       Text:  < ,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     },
                     {
                       Text: 30,
@@ -522,38 +615,42 @@
                       Text: ),
                       IsHighlighted: false
                     }
-                  ],
-                  IsExpanded: true
+                  ]
                 }
               ],
-              SourceTokens: [
+              IsExpanded: true
+            }
+          ],
+          SourceLines: [
+            {
+              Tokens: [
                 {
                   Text: x => ,
                   IsHighlighted: false
                 },
                 {
                   Text: (,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: x,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: .Age,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text:  > ,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: 20,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: ) && (,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: x,
@@ -573,16 +670,20 @@
                 },
                 {
                   Text: ),
-                  IsHighlighted: false
+                  IsHighlighted: true
                 }
-              ],
-              IsExpanded: true
+              ]
             }
           ],
-          SourceTokens: [
+          IsExpanded: true
+        }
+      ],
+      SourceLines: [
+        {
+          Tokens: [
             {
               Text: x => ,
-              IsHighlighted: false
+              IsHighlighted: true
             },
             {
               Text: (,
@@ -628,58 +729,7 @@
               Text: ),
               IsHighlighted: true
             }
-          ],
-          IsExpanded: true
-        }
-      ],
-      SourceTokens: [
-        {
-          Text: x => ,
-          IsHighlighted: true
-        },
-        {
-          Text: (,
-          IsHighlighted: true
-        },
-        {
-          Text: x,
-          IsHighlighted: true
-        },
-        {
-          Text: .Age,
-          IsHighlighted: true
-        },
-        {
-          Text:  > ,
-          IsHighlighted: true
-        },
-        {
-          Text: 20,
-          IsHighlighted: true
-        },
-        {
-          Text: ) && (,
-          IsHighlighted: true
-        },
-        {
-          Text: x,
-          IsHighlighted: true
-        },
-        {
-          Text: .Age,
-          IsHighlighted: true
-        },
-        {
-          Text:  < ,
-          IsHighlighted: true
-        },
-        {
-          Text: 30,
-          IsHighlighted: true
-        },
-        {
-          Text: ),
-          IsHighlighted: true
+          ]
         }
       ],
       IsExpanded: true
