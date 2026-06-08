@@ -2,6 +2,7 @@
   Roots: [
     {
       Path: 0,
+      RelationToParent: ,
       Kind: Lambda,
       NodeType: Lambda,
       Display: Lambda (x),
@@ -19,6 +20,7 @@
       Children: [
         {
           Path: 0/0,
+          RelationToParent: Body,
           Kind: MethodCall,
           NodeType: Call,
           Display: StartsWith,
@@ -40,6 +42,7 @@
           Children: [
             {
               Path: 0/0/0,
+              RelationToParent: Object,
               Kind: Member,
               NodeType: MemberAccess,
               Display: Name,
@@ -57,6 +60,7 @@
               Children: [
                 {
                   Path: 0/0/0/0,
+                  RelationToParent: Expression,
                   Kind: Parameter,
                   NodeType: Parameter,
                   Display: x,
@@ -67,7 +71,42 @@
                       Value: False
                     }
                   ],
-                  SourceTokens: [
+                  SourceLines: [
+                    {
+                      Tokens: [
+                        {
+                          Text: x => ,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: x,
+                          IsHighlighted: true
+                        },
+                        {
+                          Text: .Name,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: .StartsWith(,
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: "A",
+                          IsHighlighted: false
+                        },
+                        {
+                          Text: ),
+                          IsHighlighted: false
+                        }
+                      ]
+                    }
+                  ],
+                  IsExpanded: true
+                }
+              ],
+              SourceLines: [
+                {
+                  Tokens: [
                     {
                       Text: x => ,
                       IsHighlighted: false
@@ -78,7 +117,7 @@
                     },
                     {
                       Text: .Name,
-                      IsHighlighted: false
+                      IsHighlighted: true
                     },
                     {
                       Text: .StartsWith(,
@@ -92,40 +131,14 @@
                       Text: ),
                       IsHighlighted: false
                     }
-                  ],
-                  IsExpanded: true
-                }
-              ],
-              SourceTokens: [
-                {
-                  Text: x => ,
-                  IsHighlighted: false
-                },
-                {
-                  Text: x,
-                  IsHighlighted: true
-                },
-                {
-                  Text: .Name,
-                  IsHighlighted: true
-                },
-                {
-                  Text: .StartsWith(,
-                  IsHighlighted: false
-                },
-                {
-                  Text: "A",
-                  IsHighlighted: false
-                },
-                {
-                  Text: ),
-                  IsHighlighted: false
+                  ]
                 }
               ],
               IsExpanded: true
             },
             {
               Path: 0/0/1,
+              RelationToParent: Arguments[0],
               Kind: Constant,
               NodeType: Constant,
               Display: "A",
@@ -140,22 +153,57 @@
                   Value: String
                 }
               ],
-              SourceTokens: [
+              SourceLines: [
+                {
+                  Tokens: [
+                    {
+                      Text: x => ,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: x,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: .Name,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: .StartsWith(,
+                      IsHighlighted: false
+                    },
+                    {
+                      Text: "A",
+                      IsHighlighted: true
+                    },
+                    {
+                      Text: ),
+                      IsHighlighted: false
+                    }
+                  ]
+                }
+              ],
+              IsExpanded: true
+            }
+          ],
+          SourceLines: [
+            {
+              Tokens: [
                 {
                   Text: x => ,
                   IsHighlighted: false
                 },
                 {
                   Text: x,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: .Name,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: .StartsWith(,
-                  IsHighlighted: false
+                  IsHighlighted: true
                 },
                 {
                   Text: "A",
@@ -163,16 +211,20 @@
                 },
                 {
                   Text: ),
-                  IsHighlighted: false
+                  IsHighlighted: true
                 }
-              ],
-              IsExpanded: true
+              ]
             }
           ],
-          SourceTokens: [
+          IsExpanded: true
+        }
+      ],
+      SourceLines: [
+        {
+          Tokens: [
             {
               Text: x => ,
-              IsHighlighted: false
+              IsHighlighted: true
             },
             {
               Text: x,
@@ -194,34 +246,7 @@
               Text: ),
               IsHighlighted: true
             }
-          ],
-          IsExpanded: true
-        }
-      ],
-      SourceTokens: [
-        {
-          Text: x => ,
-          IsHighlighted: true
-        },
-        {
-          Text: x,
-          IsHighlighted: true
-        },
-        {
-          Text: .Name,
-          IsHighlighted: true
-        },
-        {
-          Text: .StartsWith(,
-          IsHighlighted: true
-        },
-        {
-          Text: "A",
-          IsHighlighted: true
-        },
-        {
-          Text: ),
-          IsHighlighted: true
+          ]
         }
       ],
       IsExpanded: true

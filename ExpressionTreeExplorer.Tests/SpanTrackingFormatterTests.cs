@@ -45,7 +45,7 @@ public class SpanTrackingFormatterTests
     {
         Expression<Func<User, UserDto>> expr = x => new UserDto { FullName = x.Name, Age = x.Age };
         var result = SpanTrackingFormatter.Format(expr);
-        Assert.Equal("x => new UserDto() { FullName = x.Name, Age = x.Age }", result.Text);
+        Assert.Equal("x => new UserDto()\n{\n    FullName = x.Name,\n    Age = x.Age\n}", result.Text);
     }
 
     [Fact]
