@@ -139,6 +139,7 @@
                           ]
                         }
                       ],
+                      WatchExpression: .Body.Left.Left.Expression,
                       IsExpanded: true
                     }
                   ],
@@ -196,6 +197,7 @@
                       ]
                     }
                   ],
+                  WatchExpression: .Body.Left.Left,
                   IsExpanded: true
                 },
                 {
@@ -269,6 +271,7 @@
                       ]
                     }
                   ],
+                  WatchExpression: .Body.Left.Right,
                   IsExpanded: true
                 }
               ],
@@ -326,6 +329,7 @@
                   ]
                 }
               ],
+              WatchExpression: .Body.Left,
               IsExpanded: true
             },
             {
@@ -431,6 +435,7 @@
                           ]
                         }
                       ],
+                      WatchExpression: .Body.Right.Left.Expression,
                       IsExpanded: true
                     }
                   ],
@@ -488,6 +493,7 @@
                       ]
                     }
                   ],
+                  WatchExpression: .Body.Right.Left,
                   IsExpanded: true
                 },
                 {
@@ -561,6 +567,7 @@
                       ]
                     }
                   ],
+                  WatchExpression: .Body.Right.Right,
                   IsExpanded: true
                 }
               ],
@@ -618,6 +625,7 @@
                   ]
                 }
               ],
+              WatchExpression: .Body.Right,
               IsExpanded: true
             }
           ],
@@ -675,6 +683,7 @@
               ]
             }
           ],
+          WatchExpression: .Body,
           IsExpanded: true
         }
       ],
@@ -732,11 +741,17 @@
           ]
         }
       ],
+      WatchExpression: ,
       IsExpanded: true
     }
   ],
   ReadableText: x => (x.Age > 20) && (x.Age < 30),
   DebugText: x => ((x.Age > 20) AndAlso (x.Age < 30)),
+  DebugViewText:
+.Lambda #Lambda1<System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean]>(ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User $x)
+{
+    $x.Age > 20 && $x.Age < 30
+},
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean],
   EndNodes: [
     {
