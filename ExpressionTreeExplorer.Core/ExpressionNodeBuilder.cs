@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace ExpressionTreeExplorer.Core;
@@ -22,11 +23,16 @@ public static class ExpressionNodeBuilder
         AssignSourceLines(root, spanResult.Text, new List<SourceSpan>(spanResult.Spans));
         AssignWatchExpressions(root, root);
 
+        var debugViewProp = typeof(Expression).GetProperty("DebugView",
+            BindingFlags.Instance | BindingFlags.NonPublic);
+        var debugViewText = debugViewProp?.GetValue(expr)?.ToString() ?? expr.ToString();
+
         return new ExpressionPayload
         {
             Roots = [root],
             ReadableText = spanResult.Text,
             DebugText = expr.ToString(),
+            DebugViewText = debugViewText,
             Summary = $"{expr.NodeType} : {expr.Type}",
             EndNodes = ctx.EndNodes,
             SourceSpans = new List<SourceSpan>(spanResult.Spans),

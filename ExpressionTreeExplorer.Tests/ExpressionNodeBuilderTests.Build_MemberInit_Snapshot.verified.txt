@@ -123,6 +123,7 @@
                   ]
                 }
               ],
+              WatchExpression: .Body.NewExpression,
               IsExpanded: true
             },
             {
@@ -244,6 +245,7 @@
                           ]
                         }
                       ],
+                      WatchExpression: .Body.Bindings[0].Expression.Expression,
                       IsExpanded: true
                     }
                   ],
@@ -321,6 +323,7 @@
                       ]
                     }
                   ],
+                  WatchExpression: .Body.Bindings[0].Expression,
                   IsExpanded: true
                 }
               ],
@@ -398,6 +401,7 @@
                   ]
                 }
               ],
+              WatchExpression: .Body.Bindings[0],
               IsExpanded: true
             },
             {
@@ -519,6 +523,7 @@
                           ]
                         }
                       ],
+                      WatchExpression: .Body.Bindings[1].Expression.Expression,
                       IsExpanded: true
                     }
                   ],
@@ -596,6 +601,7 @@
                       ]
                     }
                   ],
+                  WatchExpression: .Body.Bindings[1].Expression,
                   IsExpanded: true
                 }
               ],
@@ -673,6 +679,7 @@
                   ]
                 }
               ],
+              WatchExpression: .Body.Bindings[1],
               IsExpanded: true
             }
           ],
@@ -750,6 +757,7 @@
               ]
             }
           ],
+          WatchExpression: .Body,
           IsExpanded: true
         }
       ],
@@ -827,6 +835,7 @@
           ]
         }
       ],
+      WatchExpression: ,
       IsExpanded: true
     }
   ],
@@ -837,6 +846,14 @@ x => new UserDto()
     Age = x.Age
 },
   DebugText: x => new UserDto() {FullName = x.Name, Age = x.Age},
+  DebugViewText:
+.Lambda #Lambda1<System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto]>(ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User $x)
+{
+    .New ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto(){
+        FullName = $x.Name,
+        Age = $x.Age
+    }
+},
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+UserDto],
   EndNodes: [
     {

@@ -85,6 +85,7 @@
                       ]
                     }
                   ],
+                  WatchExpression: .Body.Operand.Expression,
                   IsExpanded: true
                 }
               ],
@@ -110,6 +111,7 @@
                   ]
                 }
               ],
+              WatchExpression: .Body.Operand,
               IsExpanded: true
             }
           ],
@@ -135,6 +137,7 @@
               ]
             }
           ],
+          WatchExpression: .Body,
           IsExpanded: true
         }
       ],
@@ -160,11 +163,17 @@
           ]
         }
       ],
+      WatchExpression: ,
       IsExpanded: true
     }
   ],
   ReadableText: x => (double)x.Age,
   DebugText: x => Convert(x.Age, Double),
+  DebugViewText:
+.Lambda #Lambda1<System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Double]>(ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User $x)
+{
+    (System.Double)$x.Age
+},
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Double],
   EndNodes: [
     {

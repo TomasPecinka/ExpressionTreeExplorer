@@ -101,6 +101,7 @@
                       ]
                     }
                   ],
+                  WatchExpression: .Body.Object.Expression,
                   IsExpanded: true
                 }
               ],
@@ -134,6 +135,7 @@
                   ]
                 }
               ],
+              WatchExpression: .Body.Object,
               IsExpanded: true
             },
             {
@@ -183,6 +185,7 @@
                   ]
                 }
               ],
+              WatchExpression: .Body.Arguments[0],
               IsExpanded: true
             }
           ],
@@ -216,6 +219,7 @@
               ]
             }
           ],
+          WatchExpression: .Body,
           IsExpanded: true
         }
       ],
@@ -249,11 +253,17 @@
           ]
         }
       ],
+      WatchExpression: ,
       IsExpanded: true
     }
   ],
   ReadableText: x => x.Name.StartsWith("A"),
   DebugText: x => x.Name.StartsWith("A"),
+  DebugViewText:
+.Lambda #Lambda1<System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean]>(ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User $x)
+{
+    .Call ($x.Name).StartsWith("A")
+},
   Summary: Lambda : System.Func`2[ExpressionTreeExplorer.Tests.ExpressionNodeBuilderTests+User,System.Boolean],
   EndNodes: [
     {

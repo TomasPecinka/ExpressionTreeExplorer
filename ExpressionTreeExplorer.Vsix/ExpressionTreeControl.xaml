@@ -91,8 +91,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="8" />
-            <RowDefinition Height="160" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="160" MinHeight="80" />
         </Grid.RowDefinitions>
 
         <!-- Toolbar -->
@@ -119,6 +119,89 @@
                     Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
                     BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
                     BorderThickness="1" />
+            <ComboBox ItemsSource="{Binding FormatOptions}"
+                      SelectedIndex="{Binding SelectedFormatIndex}"
+                      FontFamily="Consolas"
+                      FontSize="11"
+                      Margin="12,0,0,0"
+                      MinWidth="100">
+                <ComboBox.Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ComboBox">
+                                    <Grid>
+                                        <ToggleButton x:Name="ToggleBtn"
+                                                      IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                      Focusable="False"
+                                                      ClickMode="Press">
+                                            <ToggleButton.Template>
+                                                <ControlTemplate TargetType="ToggleButton">
+                                                    <Border Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
+                                                            BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                                            BorderThickness="1"
+                                                            CornerRadius="2"
+                                                            Padding="8,4,24,4">
+                                                        <ContentPresenter />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </ToggleButton.Template>
+                                        </ToggleButton>
+                                        <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
+                                                          ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                          Margin="8,4,24,4"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Left"
+                                                          IsHitTestVisible="False"
+                                                          TextElement.Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                        <Path x:Name="Arrow"
+                                              Data="M 0 0 L 4 4 L 8 0 Z"
+                                              Fill="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
+                                              HorizontalAlignment="Right"
+                                              VerticalAlignment="Center"
+                                              Margin="0,0,8,0"
+                                              IsHitTestVisible="False" />
+                                        <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
+                                               Placement="Bottom"
+                                               Focusable="False"
+                                               AllowsTransparency="True"
+                                               PopupAnimation="Slide">
+                                            <Border Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
+                                                    BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                                    BorderThickness="1"
+                                                    MinWidth="{TemplateBinding ActualWidth}"
+                                                    MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                                <ScrollViewer>
+                                                    <StackPanel IsItemsHost="True" />
+                                                </ScrollViewer>
+                                            </Border>
+                                        </Popup>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="ItemContainerStyle">
+                            <Setter.Value>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Foreground"
+                                            Value="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                    <Setter Property="Background"
+                                            Value="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}" />
+                                    <Setter Property="Padding"
+                                            Value="8,4" />
+                                    <Style.Triggers>
+                                        <Trigger Property="IsHighlighted"
+                                                 Value="True">
+                                            <Setter Property="Background"
+                                                    Value="#3F569CD6" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
         </StackPanel>
 
         <!-- Tree -->
@@ -841,15 +924,22 @@
             </TabItem>
         </TabControl>
 
-        <!-- Readable expression (code view) -->
+        <GridSplitter Grid.Row="2"
+                      Grid.ColumnSpan="3"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Height="6"
+                      ResizeDirection="Rows"
+                      Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}" />
+
+        <!-- Source code view -->
         <Border Grid.Row="3"
                 Grid.ColumnSpan="3"
                 BorderThickness="1"
                 CornerRadius="4"
                 Padding="4"
                 Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}"
-                BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
-                DataContext="{Binding SelectedItem, ElementName=NodeTree}">
+                BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}">
             <DockPanel LastChildFill="True">
                 <TextBlock DockPanel.Dock="Top"
                            Text="Source Code"
@@ -858,49 +948,89 @@
                            Opacity="0.6"
                            Margin="8,4,0,2"
                            Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
-                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                              HorizontalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding SourceLines}"
-                                  Margin="8">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ItemsControl ItemsSource="{Binding Tokens}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal" />
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border Padding="0"
-                                                    Margin="0">
-                                                <Border.Style>
-                                                    <Style TargetType="Border">
-                                                        <Setter Property="Background"
-                                                                Value="Transparent" />
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding IsHighlighted}"
-                                                                         Value="True">
-                                                                <Setter Property="Background"
-                                                                        Value="#3F569CD6" />
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Border.Style>
-                                                <TextBlock Text="{Binding Text}"
-                                                           FontFamily="Consolas"
-                                                           FontSize="12"
-                                                           Padding="0"
-                                                           Margin="0"
-                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+
+                <Grid>
+                    <!-- Tokenized view (ReadableExpressions with highlighting) -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  DataContext="{Binding SelectedItem, ElementName=NodeTree}">
+                        <ScrollViewer.Style>
+                            <Style TargetType="ScrollViewer">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DataContext.IsReadableFormat, RelativeSource={RelativeSource AncestorType=Border}}"
+                                                 Value="False">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ScrollViewer.Style>
+                        <ItemsControl ItemsSource="{Binding SourceLines}"
+                                      Margin="8">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding Tokens}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Padding="0"
+                                                        Margin="0">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="Background"
+                                                                    Value="Transparent" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsHighlighted}"
+                                                                             Value="True">
+                                                                    <Setter Property="Background"
+                                                                            Value="#3F569CD6" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <TextBlock Text="{Binding Text}"
+                                                               FontFamily="Consolas"
+                                                               FontSize="12"
+                                                               Padding="0"
+                                                               Margin="0"
+                                                               Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+
+                    <!-- Plain text view (ToString / DebugView) -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Auto">
+                        <ScrollViewer.Style>
+                            <Style TargetType="ScrollViewer">
+                                <Setter Property="Visibility"
+                                        Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsReadableFormat}"
+                                                 Value="False">
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ScrollViewer.Style>
+                        <TextBlock Text="{Binding CurrentPlainText}"
+                                   FontFamily="Consolas"
+                                   FontSize="12"
+                                   Margin="8"
+                                   TextWrapping="NoWrap"
+                                   Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                    </ScrollViewer>
+                </Grid>
             </DockPanel>
         </Border>
     </Grid>
