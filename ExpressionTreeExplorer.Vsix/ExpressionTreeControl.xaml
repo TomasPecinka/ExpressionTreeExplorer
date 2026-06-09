@@ -674,6 +674,35 @@
                                      BorderThickness="1" />
                         </StackPanel>
 
+                        <StackPanel DockPanel.Dock="Top"
+                                    Margin="0,0,0,8">
+                            <StackPanel.Style>
+                                <Style TargetType="StackPanel">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RuntimeValue}"
+                                                     Value="">
+                                            <Setter Property="Visibility"
+                                                    Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <TextBlock Text="Runtime Value"
+                                       FontFamily="Consolas"
+                                       FontSize="11"
+                                       Opacity="0.6"
+                                       Margin="0,0,0,4" />
+                            <TextBox Text="{Binding RuntimeValue, Mode=OneWay}"
+                                     IsReadOnly="True"
+                                     FontFamily="Consolas"
+                                     FontSize="12"
+                                     Padding="6,4"
+                                     Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
+                                     Foreground="#B5CEA8"
+                                     BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                     BorderThickness="1" />
+                        </StackPanel>
+
                         <ItemsControl ItemsSource="{Binding Details}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
