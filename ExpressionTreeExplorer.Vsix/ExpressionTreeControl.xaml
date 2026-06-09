@@ -91,8 +91,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="8" />
-            <RowDefinition Height="160" />
+            <RowDefinition Height="6" />
+            <RowDefinition Height="160" MinHeight="80" />
         </Grid.RowDefinitions>
 
         <!-- Toolbar -->
@@ -923,6 +923,14 @@
                 </ScrollViewer>
             </TabItem>
         </TabControl>
+
+        <GridSplitter Grid.Row="2"
+                      Grid.ColumnSpan="3"
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Stretch"
+                      Height="6"
+                      ResizeDirection="Rows"
+                      Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBackgroundKey}}" />
 
         <!-- Source code view -->
         <Border Grid.Row="3"
