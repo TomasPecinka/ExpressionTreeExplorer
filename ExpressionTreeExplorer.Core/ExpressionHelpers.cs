@@ -88,13 +88,18 @@ internal static class ExpressionHelpers
 
     internal static string FormatConstant(ConstantExpression constant)
     {
-        return constant.Value switch
+        return FormatValue(constant.Value, constant.Type);
+    }
+
+    internal static string FormatValue(object value, Type fallbackType)
+    {
+        return value switch
         {
             null => "null",
             string s => $"\"{s}\"",
             char c => $"'{c}'",
-            int or long or short or byte or float or double or decimal or bool => Convert.ToString(constant.Value, CultureInfo.InvariantCulture) ?? constant.Type.Name,
-            _ => $"<{constant.Value.GetType().Name}>",
+            int or long or short or byte or float or double or decimal or bool => Convert.ToString(value, CultureInfo.InvariantCulture) ?? fallbackType.Name,
+            _ => $"<{value.GetType().Name}>",
         };
     }
 }

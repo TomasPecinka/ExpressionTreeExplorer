@@ -138,13 +138,18 @@ public static class ExpressionNodeBuilder
 
     private static ExpressionNode BuildMember(MemberExpression member, string path, BuildContext ctx)
     {
+        var runtimeValue = "";
+
         if (member.Expression is ConstantExpression ce
             && ce.Type.IsDefined(typeof(CompilerGeneratedAttribute), false))
         {
+            runtimeValue = ExtractClosureValue(ce, member.Member, member.Type);
+
             ctx.EndNodes.Add(new EndNodeInfo
             {
                 Name = member.Member.Name,
                 TypeDisplay = SimplifyType(member.Type),
+                Value = runtimeValue,
                 Category = "ClosedOver",
                 Path = path
             });
@@ -157,6 +162,7 @@ public static class ExpressionNodeBuilder
             TypeDisplay = member.Type.Name,
             Kind = "Member",
             NodeType = member.NodeType.ToString(),
+            RuntimeValue = runtimeValue,
             Details =
             [
                 Detail("DeclaringType", member.Member.DeclaringType?.Name ?? "-"),
@@ -198,6 +204,7 @@ public static class ExpressionNodeBuilder
             TypeDisplay = constant.Type.Name,
             Kind = "Constant",
             NodeType = constant.NodeType.ToString(),
+            RuntimeValue = isClosureObject ? "" : FormatConstant(constant),
             Details =
             [
                 Detail("Value", FormatConstant(constant)),
@@ -791,6 +798,31 @@ public static class ExpressionNodeBuilder
             Kind = "Unsupported",
             NodeType = expr.NodeType.ToString(),
         };
+    }
+
+    private static string ExtractClosureValue(ConstantExpression closureExpr, System.Reflection.MemberInfo member, Type memberType)
+    {
+        try
+        {
+            var closureObj = closureExpr.Value;
+            if (closureObj == null)
+            {
+                return "";
+            }
+
+            object value = member switch
+            {
+                System.Reflection.FieldInfo fi => fi.GetValue(closureObj),
+                System.Reflection.PropertyInfo pi => pi.GetValue(closureObj),
+                _ => null
+            };
+
+            return ExpressionHelpers.FormatValue(value, memberType);
+        }
+        catch
+        {
+            return "";
+        }
     }
 
     private static string SimplifyType(Type type) => ExpressionHelpers.SimplifyType(type);
