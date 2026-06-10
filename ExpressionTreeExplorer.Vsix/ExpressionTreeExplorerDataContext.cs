@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics;
+using System.Runtime.Serialization;
 
 using ExpressionTreeExplorer.Core;
 
@@ -53,6 +54,37 @@ internal sealed class ExpressionTreeExplorerDataContext : NotifyPropertyChangedO
 
             return Task.CompletedTask;
         });
+
+        CopyWatchCommand = new AsyncCommand(async (parameter, ct) =>
+        {
+            if (parameter is string text && !string.IsNullOrEmpty(text))
+            {
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "clip.exe",
+                        RedirectStandardInput = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true,
+                    },
+                };
+                process.Start();
+                await process.StandardInput.WriteAsync(text);
+                process.StandardInput.Close();
+                await process.WaitForExitAsync(ct);
+            }
+        });
+
+        OpenDocsCommand = new AsyncCommand((parameter, ct) =>
+        {
+            if (parameter is string url && !string.IsNullOrEmpty(url))
+            {
+                Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+            }
+
+            return Task.CompletedTask;
+        });
     }
 
     [DataMember] public List<ExpressionNode> Roots { get; }
@@ -62,6 +94,8 @@ internal sealed class ExpressionTreeExplorerDataContext : NotifyPropertyChangedO
     [DataMember] public string Summary { get; }
     [DataMember] public IAsyncCommand ExpandAllCommand { get; }
     [DataMember] public IAsyncCommand CollapseAllCommand { get; }
+    [DataMember] public IAsyncCommand CopyWatchCommand { get; }
+    [DataMember] public IAsyncCommand OpenDocsCommand { get; }
     [DataMember] public List<EndNodeInfo> EndNodes { get; }
     [DataMember] public List<SourceSpan> SourceSpans { get; }
     [DataMember] public List<string> FormatOptions { get; }

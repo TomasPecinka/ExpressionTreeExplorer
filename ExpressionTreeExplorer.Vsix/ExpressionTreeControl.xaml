@@ -657,6 +657,56 @@
                                 Margin="0,0,0,8" />
 
                         <StackPanel DockPanel.Dock="Top"
+                                    Orientation="Horizontal"
+                                    Margin="0,0,0,8">
+                            <Button Content="Copy Watch"
+                                    Command="{Binding DataContext.CopyWatchCommand, ElementName=NodeTree}"
+                                    CommandParameter="{Binding WatchExpression}"
+                                    FontFamily="Consolas"
+                                    FontSize="11"
+                                    Padding="8,3"
+                                    Margin="0,0,4,0"
+                                    Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
+                                    Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
+                                    BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                    BorderThickness="1">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding WatchExpression}"
+                                                         Value="">
+                                                <Setter Property="Visibility"
+                                                        Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <Button Content="Docs"
+                                    Command="{Binding DataContext.OpenDocsCommand, ElementName=NodeTree}"
+                                    CommandParameter="{Binding DocsUrl}"
+                                    FontFamily="Consolas"
+                                    FontSize="11"
+                                    Padding="8,3"
+                                    Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
+                                    Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
+                                    BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                    BorderThickness="1">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding DocsUrl}"
+                                                         Value="">
+                                                <Setter Property="Visibility"
+                                                        Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+
+                        <StackPanel DockPanel.Dock="Top"
                                     Margin="0,0,0,8">
                             <TextBlock Text="Watch Expression"
                                        FontFamily="Consolas"

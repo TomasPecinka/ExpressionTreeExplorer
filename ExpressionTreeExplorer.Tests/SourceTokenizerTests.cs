@@ -81,6 +81,7 @@ public class SourceTokenizerTests
         var tokens = SourceTokenizer.TokenizeForPath("hello world", new List<SourceSpan>(), "0");
         Assert.Single(tokens);
         Assert.Equal("hello world", tokens[0].Text);
+
         Assert.False(tokens[0].IsHighlighted);
     }
 

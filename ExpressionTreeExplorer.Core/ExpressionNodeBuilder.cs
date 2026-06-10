@@ -22,6 +22,7 @@ public static class ExpressionNodeBuilder
 
         AssignSourceLines(root, spanResult.Text, new List<SourceSpan>(spanResult.Spans));
         AssignWatchExpressions(root, root);
+        AssignDocsUrls(root);
 
         var debugViewProp = typeof(Expression).GetProperty("DebugView",
             BindingFlags.Instance | BindingFlags.NonPublic);
@@ -46,6 +47,53 @@ public static class ExpressionNodeBuilder
         foreach (var child in node.Children)
         {
             AssignWatchExpressions(child, root);
+        }
+    }
+
+    private static readonly Dictionary<string, string> DocsMap = new()
+    {
+        ["Lambda"] = "lambdaexpression",
+        ["Binary"] = "binaryexpression",
+        ["Constant"] = "constantexpression",
+        ["Parameter"] = "parameterexpression",
+        ["MethodCall"] = "methodcallexpression",
+        ["Member"] = "memberexpression",
+        ["Unary"] = "unaryexpression",
+        ["Conditional"] = "conditionalexpression",
+        ["New"] = "newexpression",
+        ["MemberInit"] = "memberinitexpression",
+        ["ListInit"] = "listinitexpression",
+        ["TypeBinary"] = "typebinaryexpression",
+        ["Invocation"] = "invocationexpression",
+        ["NewArray"] = "newarrayexpression",
+        ["Index"] = "indexexpression",
+        ["Default"] = "defaultexpression",
+        ["Block"] = "blockexpression",
+        ["Try"] = "tryexpression",
+        ["Switch"] = "switchexpression",
+        ["Goto"] = "gotoexpression",
+        ["Label"] = "labelexpression",
+        ["Loop"] = "loopexpression",
+        ["CatchBlock"] = "catchblock",
+        ["SwitchCase"] = "switchcase",
+        ["ElementInit"] = "elementinit",
+        ["Binding"] = "memberbinding",
+    };
+
+    private static string GetDocsUrl(string kind)
+    {
+        return DocsMap.TryGetValue(kind, out var suffix)
+            ? $"https://learn.microsoft.com/dotnet/api/system.linq.expressions.{suffix}"
+            : string.Empty;
+    }
+
+    private static void AssignDocsUrls(ExpressionNode node)
+    {
+        node.DocsUrl = GetDocsUrl(node.Kind);
+
+        foreach (var child in node.Children)
+        {
+            AssignDocsUrls(child);
         }
     }
 

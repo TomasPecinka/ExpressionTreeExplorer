@@ -140,6 +140,8 @@
                         }
                       ],
                       WatchExpression: .Body.Left.Left.Expression,
+                      RuntimeValue: ,
+                      DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.parameterexpression,
                       IsExpanded: true
                     }
                   ],
@@ -198,6 +200,8 @@
                     }
                   ],
                   WatchExpression: .Body.Left.Left,
+                  RuntimeValue: ,
+                  DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.memberexpression,
                   IsExpanded: true
                 },
                 {
@@ -272,6 +276,8 @@
                     }
                   ],
                   WatchExpression: .Body.Left.Right,
+                  RuntimeValue: 20,
+                  DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.constantexpression,
                   IsExpanded: true
                 }
               ],
@@ -330,6 +336,8 @@
                 }
               ],
               WatchExpression: .Body.Left,
+              RuntimeValue: ,
+              DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.binaryexpression,
               IsExpanded: true
             },
             {
@@ -436,6 +444,8 @@
                         }
                       ],
                       WatchExpression: .Body.Right.Left.Expression,
+                      RuntimeValue: ,
+                      DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.parameterexpression,
                       IsExpanded: true
                     }
                   ],
@@ -494,6 +504,8 @@
                     }
                   ],
                   WatchExpression: .Body.Right.Left,
+                  RuntimeValue: ,
+                  DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.memberexpression,
                   IsExpanded: true
                 },
                 {
@@ -568,6 +580,8 @@
                     }
                   ],
                   WatchExpression: .Body.Right.Right,
+                  RuntimeValue: 30,
+                  DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.constantexpression,
                   IsExpanded: true
                 }
               ],
@@ -626,6 +640,8 @@
                 }
               ],
               WatchExpression: .Body.Right,
+              RuntimeValue: ,
+              DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.binaryexpression,
               IsExpanded: true
             }
           ],
@@ -684,6 +700,8 @@
             }
           ],
           WatchExpression: .Body,
+          RuntimeValue: ,
+          DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.binaryexpression,
           IsExpanded: true
         }
       ],
@@ -742,6 +760,8 @@
         }
       ],
       WatchExpression: ,
+      RuntimeValue: ,
+      DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.lambdaexpression,
       IsExpanded: true
     }
   ],
