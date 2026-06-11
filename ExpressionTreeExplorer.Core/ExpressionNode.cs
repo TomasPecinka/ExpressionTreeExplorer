@@ -20,6 +20,7 @@ public sealed class ExpressionNode : INotifyPropertyChanged
     [DataMember] public List<SourceLine> SourceLines { get; set; } = new();
     [DataMember] public string WatchExpression { get; set; } = string.Empty;
     [DataMember] public string RuntimeValue { get; set; } = string.Empty;
+    [DataMember] public string DocsUrl { get; set; } = string.Empty;
 
     [DataMember]
     public bool IsExpanded

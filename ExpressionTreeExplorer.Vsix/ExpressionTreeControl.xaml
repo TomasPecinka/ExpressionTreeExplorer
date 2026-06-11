@@ -100,25 +100,73 @@
                     Grid.ColumnSpan="3"
                     Orientation="Horizontal"
                     Margin="0,0,0,4">
-            <Button Content="Expand All"
-                    Command="{Binding ExpandAllCommand}"
-                    FontFamily="Consolas"
-                    FontSize="11"
-                    Padding="8,3"
-                    Margin="0,0,4,0"
-                    Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
-                    Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
-                    BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
-                    BorderThickness="1" />
-            <Button Content="Collapse All"
-                    Command="{Binding CollapseAllCommand}"
-                    FontFamily="Consolas"
-                    FontSize="11"
-                    Padding="8,3"
-                    Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
-                    Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
-                    BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
-                    BorderThickness="1" />
+            <Button Command="{Binding ExpandAllCommand}"
+                    Margin="0,0,4,0">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Bd"
+                                            Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
+                                            BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                            BorderThickness="1"
+                                            Padding="8,3"
+                                            CornerRadius="2">
+                                        <TextBlock Text="Expand All"
+                                                   FontFamily="Consolas"
+                                                   FontSize="11"
+                                                   Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd"
+                                                    Property="Background"
+                                                    Value="{DynamicResource {x:Static styles:VsBrushes.CommandBarHoverKey}}" />
+                                            <Setter TargetName="Bd"
+                                                    Property="BorderBrush"
+                                                    Value="{DynamicResource {x:Static styles:VsBrushes.CommandBarBorderKey}}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Command="{Binding CollapseAllCommand}">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Bd"
+                                            Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
+                                            BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                            BorderThickness="1"
+                                            Padding="8,3"
+                                            CornerRadius="2">
+                                        <TextBlock Text="Collapse All"
+                                                   FontFamily="Consolas"
+                                                   FontSize="11"
+                                                   Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd"
+                                                    Property="Background"
+                                                    Value="{DynamicResource {x:Static styles:VsBrushes.CommandBarHoverKey}}" />
+                                            <Setter TargetName="Bd"
+                                                    Property="BorderBrush"
+                                                    Value="{DynamicResource {x:Static styles:VsBrushes.CommandBarBorderKey}}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
             <ComboBox ItemsSource="{Binding FormatOptions}"
                       SelectedIndex="{Binding SelectedFormatIndex}"
                       FontFamily="Consolas"
@@ -655,6 +703,94 @@
                                 Height="1"
                                 Background="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
                                 Margin="0,0,0,8" />
+
+                        <StackPanel DockPanel.Dock="Top"
+                                    Orientation="Horizontal"
+                                    Margin="0,0,0,8">
+                            <Button Command="{Binding DataContext.CopyWatchCommand, ElementName=NodeTree}"
+                                    CommandParameter="{Binding WatchExpression}">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border x:Name="Bd"
+                                                            Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
+                                                            BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                                            BorderThickness="1"
+                                                            Padding="8,3"
+                                                            CornerRadius="2">
+                                                        <TextBlock Text="Copy Watch"
+                                                                   FontFamily="Consolas"
+                                                                   FontSize="11"
+                                                                   Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="Bd"
+                                                                    Property="Background"
+                                                                    Value="{DynamicResource {x:Static styles:VsBrushes.CommandBarHoverKey}}" />
+                                                            <Setter TargetName="Bd"
+                                                                    Property="BorderBrush"
+                                                                    Value="{DynamicResource {x:Static styles:VsBrushes.CommandBarBorderKey}}" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Margin" Value="0,0,4,0" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding WatchExpression}"
+                                                         Value="">
+                                                <Setter Property="Visibility"
+                                                        Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <Button Command="{Binding DataContext.OpenDocsCommand, ElementName=NodeTree}"
+                                    CommandParameter="{Binding DocsUrl}">
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border x:Name="Bd"
+                                                            Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
+                                                            BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
+                                                            BorderThickness="1"
+                                                            Padding="8,3"
+                                                            CornerRadius="2">
+                                                        <TextBlock Text="Docs"
+                                                                   FontFamily="Consolas"
+                                                                   FontSize="11"
+                                                                   Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter TargetName="Bd"
+                                                                    Property="Background"
+                                                                    Value="{DynamicResource {x:Static styles:VsBrushes.CommandBarHoverKey}}" />
+                                                            <Setter TargetName="Bd"
+                                                                    Property="BorderBrush"
+                                                                    Value="{DynamicResource {x:Static styles:VsBrushes.CommandBarBorderKey}}" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding DocsUrl}"
+                                                         Value="">
+                                                <Setter Property="Visibility"
+                                                        Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
 
                         <StackPanel DockPanel.Dock="Top"
                                     Margin="0,0,0,8">

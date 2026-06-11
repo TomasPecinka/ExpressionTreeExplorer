@@ -124,6 +124,8 @@
                 }
               ],
               WatchExpression: .Body.NewExpression,
+              RuntimeValue: ,
+              DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.newexpression,
               IsExpanded: true
             },
             {
@@ -246,6 +248,8 @@
                         }
                       ],
                       WatchExpression: .Body.Bindings[0].Expression.Expression,
+                      RuntimeValue: ,
+                      DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.parameterexpression,
                       IsExpanded: true
                     }
                   ],
@@ -324,6 +328,8 @@
                     }
                   ],
                   WatchExpression: .Body.Bindings[0].Expression,
+                  RuntimeValue: ,
+                  DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.memberexpression,
                   IsExpanded: true
                 }
               ],
@@ -402,6 +408,8 @@
                 }
               ],
               WatchExpression: .Body.Bindings[0],
+              RuntimeValue: ,
+              DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.memberbinding,
               IsExpanded: true
             },
             {
@@ -524,6 +532,8 @@
                         }
                       ],
                       WatchExpression: .Body.Bindings[1].Expression.Expression,
+                      RuntimeValue: ,
+                      DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.parameterexpression,
                       IsExpanded: true
                     }
                   ],
@@ -602,6 +612,8 @@
                     }
                   ],
                   WatchExpression: .Body.Bindings[1].Expression,
+                  RuntimeValue: ,
+                  DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.memberexpression,
                   IsExpanded: true
                 }
               ],
@@ -680,6 +692,8 @@
                 }
               ],
               WatchExpression: .Body.Bindings[1],
+              RuntimeValue: ,
+              DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.memberbinding,
               IsExpanded: true
             }
           ],
@@ -758,6 +772,8 @@
             }
           ],
           WatchExpression: .Body,
+          RuntimeValue: ,
+          DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.memberinitexpression,
           IsExpanded: true
         }
       ],
@@ -836,6 +852,8 @@
         }
       ],
       WatchExpression: ,
+      RuntimeValue: ,
+      DocsUrl: https://learn.microsoft.com/dotnet/api/system.linq.expressions.lambdaexpression,
       IsExpanded: true
     }
   ],
