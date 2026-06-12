@@ -33,7 +33,7 @@
 		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<ProjectReference Include="..\ExpressionTreeExplorer.Core\ExpressionTreeExplorer.Core.csproj" />
 		<ProjectReference Include="..\ExpressionTreeExplorer.ObjectSource\ExpressionTreeExplorer.ObjectSource.csproj" />
