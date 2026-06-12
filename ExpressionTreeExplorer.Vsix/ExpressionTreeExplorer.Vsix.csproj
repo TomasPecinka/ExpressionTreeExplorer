@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="..\ExpressionTreeExplorer.ObjectSource\bin\Debug\netstandard2.0\ExpressionTreeExplorer.ObjectSource.dll">
+	  <Content Include="..\ExpressionTreeExplorer.ObjectSource\bin\$(Configuration)\netstandard2.0\ExpressionTreeExplorer.ObjectSource.dll">
 		<Link>netstandard2.0\ExpressionTreeExplorer.ObjectSource.dll</Link>
 		<IncludeInVSIX>true</IncludeInVSIX>
 		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -27,7 +27,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="..\ExpressionTreeExplorer.Core\bin\Debug\netstandard2.0\ExpressionTreeExplorer.Core.dll">
+	  <Content Include="..\ExpressionTreeExplorer.Core\bin\$(Configuration)\netstandard2.0\ExpressionTreeExplorer.Core.dll">
 		<Link>netstandard2.0\ExpressionTreeExplorer.Core.dll</Link>
 		<IncludeInVSIX>true</IncludeInVSIX>
 		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
