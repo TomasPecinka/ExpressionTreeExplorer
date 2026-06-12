@@ -13,7 +13,15 @@ internal class ExtensionEntrypoint : Extension
                 version: this.ExtensionAssemblyVersion,
                 publisherName: "TomasPecinka",
                 displayName: "Expression Tree Explorer",
-                description: "A debugger visualizer for exploring expression trees in Visual Studio."),
+                description: "A debugger visualizer for exploring expression trees in Visual Studio.")
+        {
+            Icon = "Assets/icon.png",
+            PreviewImage = "Assets/preview.png",
+            License = "LICENSE.txt",
+            Tags = ["expression", "expression-tree", "linq", "debugger", "visualizer", "ef-core"],
+            MoreInfo = "https://github.com/TomasPecinka/ExpressionTreeExplorer",
+            Preview = true,
+        },
     };
 
     protected override void InitializeServices(IServiceCollection serviceCollection)
