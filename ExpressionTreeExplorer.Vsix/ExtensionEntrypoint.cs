@@ -1,31 +1,23 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.Extensibility;
 
-namespace ExpressionTreeExplorer.Vsix
+namespace ExpressionTreeExplorer.Vsix;
+
+[VisualStudioContribution]
+internal class ExtensionEntrypoint : Extension
 {
-    /// <summary>
-    /// Extension entrypoint for the VisualStudio.Extensibility extension.
-    /// </summary>
-    [VisualStudioContribution]
-    internal class ExtensionEntrypoint : Extension
+    public override ExtensionConfiguration ExtensionConfiguration => new()
     {
-        /// <inheritdoc/>
-        public override ExtensionConfiguration ExtensionConfiguration => new()
-        {
-            Metadata = new(
-                    id: "ExpressionTreeExplorer.Vsix.dba879fe-b40c-43a4-8831-9a5ab6abc011",
-                    version: this.ExtensionAssemblyVersion,
-                    publisherName: "Publisher name",
-                    displayName: "ExpressionTreeExplorer.Vsix",
-                    description: "Extension description"),
-        };
+        Metadata = new(
+                id: "ExpressionTreeExplorer.Vsix.dba879fe-b40c-43a4-8831-9a5ab6abc011",
+                version: this.ExtensionAssemblyVersion,
+                publisherName: "TomasPecinka",
+                displayName: "Expression Tree Explorer",
+                description: "A debugger visualizer for exploring expression trees in Visual Studio."),
+    };
 
-        /// <inheritdoc />
-        protected override void InitializeServices(IServiceCollection serviceCollection)
-        {
-            base.InitializeServices(serviceCollection);
-
-            // You can configure dependency injection here by adding services to the serviceCollection.
-        }
+    protected override void InitializeServices(IServiceCollection serviceCollection)
+    {
+        base.InitializeServices(serviceCollection);
     }
 }
