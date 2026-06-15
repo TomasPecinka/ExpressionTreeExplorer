@@ -11,7 +11,7 @@ internal class ExtensionEntrypoint : Extension
         Metadata = new(
                 id: "ExpressionTreeExplorer.Vsix.dba879fe-b40c-43a4-8831-9a5ab6abc011",
                 version: this.ExtensionAssemblyVersion,
-                publisherName: "TomasPecinka",
+                publisherName: "Tomáš Pečinka",
                 displayName: "Expression Tree Explorer",
                 description: "A debugger visualizer for exploring expression trees in Visual Studio.")
         {
