@@ -21,6 +21,7 @@ internal class ExtensionEntrypoint : Extension
             Tags = ["expression", "expression-tree", "linq", "debugger", "visualizer", "ef-core"],
             MoreInfo = "https://github.com/TomasPecinka/ExpressionTreeExplorer",
             Preview = true,
+            InstallationTargetVersion = "[17.9,19.0)",
         },
     };
 
