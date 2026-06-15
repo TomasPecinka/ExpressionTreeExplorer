@@ -23,17 +23,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2930713"
-     inkscape:cx="129.33309"
-     inkscape:cy="192.20096"
+     inkscape:zoom="1.780884"
+     inkscape:cx="212.94038"
+     inkscape:cy="167.67857"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
-     inkscape:window-x="1912"
-     inkscape:window-y="278"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:pagecheckerboard="true"
      fit-margin-top="0"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -66,47 +66,54 @@
        y="15.934815"
        rx="10"
        ry="10" />
-    <g
-       id="g884"
-       transform="translate(-3.4122314,0.82745314)">
-      <rect
-         style="fill:#999999;fill-opacity:1;stroke:none;stroke-width:2.00079;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
-         id="rect860-0"
-         width="6.154748"
-         height="37.56448"
-         x="-62.448208"
-         y="101.37102"
-         rx="0.99920136"
-         ry="0.99922603"
-         transform="matrix(-0.82291283,0.56816765,0.53505704,0.84481594,0,0)" />
-      <rect
-         style="fill:#999999;fill-opacity:1;stroke:none;stroke-width:2.00079;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
-         id="rect860"
-         width="6.154748"
-         height="37.56448"
-         x="104.783"
-         y="-12.348607"
-         rx="0.99920136"
-         ry="0.99922603"
-         transform="matrix(0.82291282,0.56816766,-0.53505704,0.84481594,0,0)" />
-      <circle
-         style="fill:#c586c0;fill-opacity:1;stroke:#c586c0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
-         id="path831"
-         cx="99.833389"
-         cy="44.636086"
-         r="13.812021" />
-      <circle
-         style="fill:#569cd6;fill-opacity:1;stroke:#569cd6;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
-         id="path841"
-         cx="72.135117"
-         cy="88.275841"
-         r="11.11482" />
-      <circle
-         style="fill:#d7ba7d;fill-opacity:1;stroke:#d7ba7d;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
-         id="path841-0"
-         cx="124.95003"
-         cy="88.275841"
-         r="11.11482" />
-    </g>
+    <rect
+       style="fill:#999999;fill-opacity:1;stroke:none;stroke-width:2.00079;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="rect860-0"
+       width="6.154748"
+       height="37.56448"
+       x="-59.120144"
+       y="100.11223"
+       rx="0.99920136"
+       ry="0.99922603"
+       transform="matrix(-0.82291283,0.56816765,0.53505704,0.84481594,0,0)" />
+    <rect
+       style="fill:#999999;fill-opacity:1;stroke:none;stroke-width:2.00079;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="rect860"
+       width="6.154748"
+       height="37.56448"
+       x="102.3411"
+       y="-9.7269001"
+       rx="0.99920136"
+       ry="0.99922603"
+       transform="matrix(0.82291282,0.56816766,-0.53505704,0.84481594,0,0)" />
+    <circle
+       style="fill:#c586c0;fill-opacity:1;stroke:#c586c0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="path831"
+       cx="96.421158"
+       cy="45.463539"
+       r="13.812021" />
+    <circle
+       style="fill:#569cd6;fill-opacity:1;stroke:#569cd6;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="path841"
+       cx="68.722885"
+       cy="89.103294"
+       r="11.11482" />
+    <circle
+       style="fill:#d7ba7d;fill-opacity:1;stroke:#d7ba7d;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="path841-0"
+       cx="121.5378"
+       cy="89.103294"
+       r="11.11482" />
+    <text
+       xml:space="preserve"
+       style="font-size:16.9333px;line-height:0.5;font-family:sans-serif;letter-spacing:0px;fill:#1e1e2e;fill-opacity:1;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none"
+       x="89.944809"
+       y="53.683968"
+       id="text839"><tspan
+         sodipodi:role="line"
+         id="tspan837"
+         x="89.944809"
+         y="53.683968"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:23.8125px;font-family:Consolas;-inkscape-font-specification:'Consolas Bold';fill:#1e1e2e;fill-opacity:1;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none">λ</tspan></text>
   </g>
 </svg>
