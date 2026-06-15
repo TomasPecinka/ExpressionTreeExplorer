@@ -8,21 +8,10 @@ A Visual Studio debugger visualizer for C# expression trees.
 
 Expression Tree Explorer is a debugger visualizer for `Expression<TDelegate>` variables. Open it from the debugger and the expression is broken into four linked views:
 
-#### Tree view
-The full node tree with color-coded badges (node kind, `ExpressionType`, static type). Expand/collapse all from the toolbar.
-
-#### Detail panel
-
-Properties of the selected node (operator, method, member, lifted flags, runtime values), a watch expression you can copy, a **Copy Watch** button, and a link to the MS docs for that node type.
-
-#### Source panel
-
-The expression as readable C#. Clicking a tree node highlights the matching span. Switch between ReadableExpressions, `ToString`, and DebugView from the toolbar.
-
-#### End nodes tab
-
-A flat list of all terminal nodes: parameters, constants, closed-over variables, and defaults. Useful when the tree gets deep.
-
+- **Tree view** - the full node tree with color-coded badges (node kind, `ExpressionType`, static type). Expand/collapse all from the toolbar.
+- **Detail panel** - properties of the selected node (operator, method, member, lifted flags, runtime values), a watch expression you can copy, a **Copy Watch** button, and a link to the MS docs for that node type.
+- **Source panel** - the expression as readable C#. Clicking a tree node highlights the matching span. Switch between ReadableExpressions, `ToString`, and DebugView from the toolbar.
+- **End nodes tab** - a flat list of all terminal nodes: parameters, constants, closed-over variables, and defaults. Useful when the tree gets deep.
 
 ## Supported node types
 
@@ -78,6 +67,7 @@ Everything runs locally. The expression tree is serialized inside your debuggee 
 
 
 ## References 
+
 - [Debugger visualizers (VisualStudio.Extensibility)](https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/debugger-visualizer/debugger-visualizers)
 - [Remote UI (VisualStudio.Extensibility)](https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/inside-the-sdk/remote-ui)
 
