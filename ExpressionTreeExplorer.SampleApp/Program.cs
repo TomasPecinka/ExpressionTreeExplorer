@@ -12,6 +12,12 @@ internal class Program
         Expression<Func<User, bool>> predicate =
             x => x.Age > 20 && x.Age < 30;
 
+        // closure capture (local variables lifted into a closure)
+        int minAge = 18;
+        string prefix = "A";
+        Expression<Func<User, bool>> closure =
+            x => x.Age >= minAge && x.Name.StartsWith(prefix);
+
         // conditional (ternary)
         Expression<Func<User, string>> conditional =
             x => x.Age >= 18 ? x.Name : "minor";
@@ -123,6 +129,7 @@ internal class Program
         var expressions = new (string Name, Expression Expr)[]
         {
             ("Predicate", predicate),
+            ("Closure", closure),
             ("Conditional", conditional),
             ("MethodCall", methodCall),
             ("MemberInit", memberInit),

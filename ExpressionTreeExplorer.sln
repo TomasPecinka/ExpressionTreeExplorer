@@ -13,6 +13,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionTreeExplorer.Vsix
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionTreeExplorer.Tests", "ExpressionTreeExplorer.Tests\ExpressionTreeExplorer.Tests.csproj", "{3CA1DA2F-56AB-4895-8344-88BC7133A965}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EFA536C3-BDAB-4FDC-B027-57093787EE4D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		docs\screenshot.png = docs\screenshot.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{82145272-2E3A-4FFB-8D07-065A530D5499}"
+	ProjectSection(SolutionItems) = preProject
+		docs\screenshot.png = docs\screenshot.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
