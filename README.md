@@ -4,7 +4,7 @@ A Visual Studio debugger visualizer for C# expression trees.
 
 ![Expression Tree Explorer screenshot](docs/screenshot.png)
 
-## What it does
+## Description
 
 When you hit a breakpoint and hover over an `Expression<TDelegate>` variable, click the magnifier icon and pick **Expression Tree Explorer**. You get:
 
@@ -61,8 +61,13 @@ Everything runs locally. The expression tree is serialized inside your debuggee 
 
 *`SampleApp` and `Tests` are not part of the extension, they exist only for local development.
 
+## Credits
+
+- [AgileObjects.ReadableExpressions](https://github.com/agileobjects/ReadableExpressions) (MIT) - generates the readable C# output.
+- [zspitz/ExpressionTreeVisualizer](https://github.com/zspitz/ExpressionTreeVisualizer)
+- [Debugger visualizers (VisualStudio.Extensibility)](https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/debugger-visualizer/debugger-visualizers)
+- [Remote UI (VisualStudio.Extensibility)](https://learn.microsoft.com/en-us/visualstudio/extensibility/visualstudio.extensibility/inside-the-sdk/remote-ui)
+
 ## License
 
 [MIT](LICENSE) © Tomáš Pečinka
-
-Readable C# output is generated using [AgileObjects.ReadableExpressions](https://github.com/agileobjects/ReadableExpressions) (MIT).
