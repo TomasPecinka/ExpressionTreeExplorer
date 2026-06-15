@@ -5,7 +5,10 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
+		<None Remove="Assets\icon.png" />
+		<None Remove="Assets\preview.png" />
 		<None Remove="ExpressionTreeControl.xaml" />
+		<None Remove="LICENSE.txt" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="ExpressionTreeControl.xaml">
@@ -32,6 +35,9 @@
 		<IncludeInVSIX>true</IncludeInVSIX>
 		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Content>
+	  <Content Include="Assets\icon.png" />
+	  <Content Include="Assets\preview.png" />
+	  <Content Include="LICENSE.txt" />
 	</ItemGroup>
 
 	<ItemGroup>
