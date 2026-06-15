@@ -5,7 +5,10 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
+		<None Remove="Assets\icon.png" />
+		<None Remove="Assets\preview.png" />
 		<None Remove="ExpressionTreeControl.xaml" />
+		<None Remove="LICENSE.txt" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="ExpressionTreeControl.xaml">
@@ -19,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="..\ExpressionTreeExplorer.ObjectSource\bin\Debug\netstandard2.0\ExpressionTreeExplorer.ObjectSource.dll">
+	  <Content Include="..\ExpressionTreeExplorer.ObjectSource\bin\$(Configuration)\netstandard2.0\ExpressionTreeExplorer.ObjectSource.dll">
 		<Link>netstandard2.0\ExpressionTreeExplorer.ObjectSource.dll</Link>
 		<IncludeInVSIX>true</IncludeInVSIX>
 		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -27,13 +30,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="..\ExpressionTreeExplorer.Core\bin\Debug\netstandard2.0\ExpressionTreeExplorer.Core.dll">
+	  <Content Include="..\ExpressionTreeExplorer.Core\bin\$(Configuration)\netstandard2.0\ExpressionTreeExplorer.Core.dll">
 		<Link>netstandard2.0\ExpressionTreeExplorer.Core.dll</Link>
 		<IncludeInVSIX>true</IncludeInVSIX>
 		<CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </Content>
+	  <Content Include="Assets\icon.png" />
+	  <Content Include="Assets\preview.png" />
+	  <Content Include="LICENSE.txt" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<ProjectReference Include="..\ExpressionTreeExplorer.Core\ExpressionTreeExplorer.Core.csproj" />
 		<ProjectReference Include="..\ExpressionTreeExplorer.ObjectSource\ExpressionTreeExplorer.ObjectSource.csproj" />
