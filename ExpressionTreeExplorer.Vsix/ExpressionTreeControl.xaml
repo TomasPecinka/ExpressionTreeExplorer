@@ -1115,7 +1115,7 @@
                            Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}" />
 
                 <Grid>
-                    <!-- Tokenized view (ReadableExpressions with highlighting) -->
+                    <!-- Tokenized view (SpanTrackingFormatter with highlighting) -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
                                   HorizontalScrollBarVisibility="Auto"
                                   DataContext="{Binding SelectedItem, ElementName=NodeTree}">
