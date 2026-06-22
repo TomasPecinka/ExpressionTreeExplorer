@@ -283,7 +283,7 @@
                                 <TextBlock Text="{Binding TypeDisplay}"
                                            FontFamily="Consolas"
                                            FontSize="11"
-                                           Foreground="#569CD6" />
+                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.PanelHyperlinkKey}}" />
                             </StackPanel>
                         </Border.ToolTip>
                         <StackPanel Orientation="Horizontal">
@@ -695,7 +695,7 @@
                             <TextBlock Text="{Binding TypeDisplay}"
                                        FontFamily="Consolas"
                                        FontSize="12"
-                                       Foreground="#569CD6"
+                                       Foreground="{DynamicResource {x:Static styles:VsBrushes.PanelHyperlinkKey}}"
                                        Margin="0,4,0,0" />
                         </StackPanel>
 
@@ -834,7 +834,7 @@
                                      FontSize="12"
                                      Padding="6,4"
                                      Background="{DynamicResource {x:Static styles:VsBrushes.CommandBarMenuBackgroundGradientBeginKey}}"
-                                     Foreground="#B5CEA8"
+                                     Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
                                      BorderBrush="{DynamicResource {x:Static styles:VsBrushes.ToolWindowBorderKey}}"
                                      BorderThickness="1" />
                         </StackPanel>
@@ -853,7 +853,7 @@
                                                    FontFamily="Consolas"
                                                    FontWeight="SemiBold"
                                                    FontSize="12"
-                                                   Foreground="#9CDCFE" />
+                                                   Foreground="{DynamicResource {x:Static styles:VsBrushes.PanelHyperlinkKey}}" />
                                         <TextBlock Grid.Column="2"
                                                    Text="{Binding Value}"
                                                    FontFamily="Consolas"
@@ -915,7 +915,7 @@
                                                 <TextBlock Text="{Binding TypeDisplay}"
                                                            FontFamily="Consolas"
                                                            FontSize="11"
-                                                           Foreground="#569CD6"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.PanelHyperlinkKey}}"
                                                            VerticalAlignment="Center" />
                                             </StackPanel>
                                         </Border>
@@ -965,7 +965,7 @@
                                                 <TextBlock Text="{Binding TypeDisplay}"
                                                            FontFamily="Consolas"
                                                            FontSize="11"
-                                                           Foreground="#569CD6"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.PanelHyperlinkKey}}"
                                                            VerticalAlignment="Center" />
                                                 <TextBlock Text="  = "
                                                            FontFamily="Consolas"
@@ -975,7 +975,7 @@
                                                 <TextBlock Text="{Binding Value}"
                                                            FontFamily="Consolas"
                                                            FontSize="12"
-                                                           Foreground="#B5CEA8"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.ToolWindowTextKey}}"
                                                            VerticalAlignment="Center" />
                                             </StackPanel>
                                         </Border>
@@ -1025,7 +1025,7 @@
                                                 <TextBlock Text="{Binding TypeDisplay}"
                                                            FontFamily="Consolas"
                                                            FontSize="11"
-                                                           Foreground="#569CD6"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.PanelHyperlinkKey}}"
                                                            VerticalAlignment="Center" />
                                             </StackPanel>
                                         </Border>
@@ -1075,7 +1075,7 @@
                                                 <TextBlock Text="{Binding TypeDisplay}"
                                                            FontFamily="Consolas"
                                                            FontSize="11"
-                                                           Foreground="#569CD6"
+                                                           Foreground="{DynamicResource {x:Static styles:VsBrushes.PanelHyperlinkKey}}"
                                                            VerticalAlignment="Center" />
                                             </StackPanel>
                                         </Border>
