@@ -9,8 +9,8 @@ A Visual Studio debugger visualizer for C# expression trees.
 Expression Tree Explorer is a debugger visualizer for `Expression<TDelegate>` variables. Open it from the debugger and the expression is broken into four linked views:
 
 - **Tree view** - the full node tree with color-coded badges (node kind, `ExpressionType`, static type). Expand/collapse all from the toolbar.
-- **Detail panel** - properties of the selected node (operator, method, member, lifted flags, runtime values), a watch expression you can copy, a **Copy Watch** button, and a link to the MS docs for that node type.
-- **Source panel** - the expression as readable C#. Clicking a tree node highlights the matching span. Switch between ReadableExpressions, `ToString`, and DebugView from the toolbar.
+- **Detail panel** - properties of the selected node (operator, method, member, lifted flags, runtime values), a watch expression you can copy, a Copy Watch button, and a link to the MS docs for that node type.
+- **Source panel** - the expression as readable C#. Clicking a tree node highlights the matching span. Switch between Readable, `ToString`, and DebugView from the toolbar.
 - **End nodes tab** - a flat list of all terminal nodes: parameters, constants, closed-over variables, and defaults. Useful when the tree gets deep.
 
 ## Supported node types
@@ -40,7 +40,6 @@ Lambda, Binary, Member, Constant, Parameter, MethodCall, Unary, MemberInit, Cond
 The extension uses the VisualStudio.Extensibility out-of-process model (Remote UI), which has a few hard limits:
 
 - Source highlighting is one-way: tree -> source. You can't click in the source panel to select a node.
-- Only C# output (ReadableExpressions doesn't support VB.NET).
 - Runtime value extraction only reads `ConstantExpression.Value` and closure fields. No user code is executed.
 - No multi-select and no "open in new window" (Remote UI doesn't support either).
 
